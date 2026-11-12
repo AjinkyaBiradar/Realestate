@@ -93,53 +93,6 @@ realestate/
 
 ---
 
-## 🚀 Getting Started
-
-### Prerequisites
-
-- **Node.js**: `v18.17+` or `v20+`
-- **Package Manager**: `npm`, `yarn`, or `pnpm`
-
-### Installation
-
-1. Clone or navigate to the project directory:
-   ```bash
-   cd realestate
-   ```
-
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-3. Start the local development server:
-   ```bash
-   npm run dev
-   ```
-
-4. Open your browser and visit:
-   ```text
-   http://localhost:3000
-   ```
-
----
-
-## 📦 Production Build
-
-To compile a fully optimized, static-generated production build:
-
-```bash
-npm run build
-```
-
-To preview the production build locally:
-
-```bash
-npm run start
-```
-
----
-
 ## ⚡ Performance Optimizations
 
 1. **Elimination of Scroll Traps**: OrbitControls and camera wheel events on `#stageCanvas` no longer cancel default page scrolling (`e.preventDefault()`), ensuring unobstructed scrolling past 3D canvases.
@@ -148,7 +101,3 @@ npm run start
 4. **Adaptive Preloading**: Initial 24 frames load eagerly with priority, followed by a throttled background pump to keep bandwidth free for smooth initial render.
 
 ---
-
-## 📄 License
-
-Design concept and assets inspired by [AIST Lab](https://lake.aistlab.online). Created for educational and demonstration purposes.
