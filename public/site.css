@@ -1,0 +1,754 @@
+
+/* Метрики запасного шрифта подогнаны, чтобы подмена ничего не двигала: font-display
+   оставлен swap. optional обнулил бы CLS, но навсегда оставил бы страницу на системном
+   шрифте на медленной машине — то есть обменял бы метрику на тот самый дефолтный вид,
+   который анти-слоп запрещает. Коэффициенты меряются в браузере, не копируются вслепую. */
+@font-face{font-family:'Onest';src:url('/assets/fonts/Onest-Medium-cyrillic-ext.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap;unicode-range:U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F}
+@font-face{font-family:'Onest';src:url('/assets/fonts/Onest-Medium-cyrillic.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap;unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116}
+@font-face{font-family:'Onest';src:url('/assets/fonts/Onest-Medium-latin-ext.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap;unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Onest';src:url('/assets/fonts/Onest-Medium-latin.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap;unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Onest';src:url('/assets/fonts/Onest-Bold-cyrillic-ext.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap;unicode-range:U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F}
+@font-face{font-family:'Onest';src:url('/assets/fonts/Onest-Bold-cyrillic.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap;unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116}
+@font-face{font-family:'Onest';src:url('/assets/fonts/Onest-Bold-latin-ext.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap;unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Onest';src:url('/assets/fonts/Onest-Bold-latin.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap;unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Golos';src:url('/assets/fonts/Golos-Regular-cyrillic-ext.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap;unicode-range:U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F}
+@font-face{font-family:'Golos';src:url('/assets/fonts/Golos-Regular-cyrillic.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap;unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116}
+@font-face{font-family:'Golos';src:url('/assets/fonts/Golos-Regular-latin-ext.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap;unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Golos';src:url('/assets/fonts/Golos-Regular-latin.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap;unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Golos';src:url('/assets/fonts/Golos-Medium-cyrillic-ext.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap;unicode-range:U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F}
+@font-face{font-family:'Golos';src:url('/assets/fonts/Golos-Medium-cyrillic.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap;unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116}
+@font-face{font-family:'Golos';src:url('/assets/fonts/Golos-Medium-latin-ext.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap;unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Golos';src:url('/assets/fonts/Golos-Medium-latin.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap;unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+
+@font-face{font-family:'Onest Fallback';src:local('Helvetica Neue'),local('Arial');
+  size-adjust:93.4%;ascent-override:104%;descent-override:32%;line-gap-override:0%}
+@font-face{font-family:'Golos Fallback';src:local('Helvetica Neue'),local('Arial');
+  size-adjust:101.5%;ascent-override:96%;descent-override:28%;line-gap-override:0%}
+
+:root{
+  --d:'Onest','Onest Fallback',sans-serif;
+  --b:'Golos','Golos Fallback',sans-serif;
+  --ink:#1d1c19; --ink-2:#4c4a44; --ink-3:#67635a;   /* 3.88:1 → 5.35:1, замер ниже */
+  --paper:#f4f2ed; --paper-2:#eae7df; --card:#fffefb;
+  --oak:#c8a877; --travertine:#e7e0d2; --stone:#9aa0a0; --bronze:#7c6a4f;
+  --accent:#7a5c33;              /* 4.45:1 не проходил AA → 5.42:1 */
+  --accent-dark:#d8b784;         /* тот же токен для чернильного футера: контраст AA */
+  --line:rgba(29,28,25,.12);
+  /* Контрасты измерены, а не подобраны на глаз (2026-08-07, на --paper #f4f2ed):
+     ink 15.2:1 · ink-2 7.9:1 · ink-3 5.4:1 · accent 5.4:1 · accent-dark на
+     чернильном 9.0:1. Порог AA — 4.5:1 для body. */
+  --r:14px;
+  --sp:clamp(40px,4.5vw,72px);
+}
+*{box-sizing:border-box}
+/* Навбар зафиксирован сверху и перехватывал клики по элементам, к которым только что
+   проскроллили (поймано playwright'ом: «nav subtree intercepts pointer events»).
+   scroll-margin отодвигает якорь ниже панели. */
+:target,section[id],header[id]{scroll-margin-top:96px}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+.lenis.lenis-smooth [data-lenis-prevent]{overscroll-behavior:contain}
+.lenis.lenis-stopped{overflow:hidden}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.6 var(--b);
+  overflow-x:clip}   /* clip, не hidden: hidden форсит overflow-y:auto = вторая полоса */
+img{max-width:100%;height:auto;display:block}
+h1,h2,h3{font-family:var(--d);font-weight:700;letter-spacing:-.02em;line-height:1.03;margin:0}
+h1{font-size:clamp(44px,7.4vw,104px)}
+h2{font-size:clamp(30px,4.2vw,58px)}
+h3{font-size:clamp(19px,1.7vw,25px);letter-spacing:-.01em;line-height:1.2}
+p{margin:0 0 1em}
+a{color:inherit}
+.wrap{width:min(1240px,92vw);margin:0 auto}
+.sec{padding:var(--sp) 0}
+.eyebrow{font:500 12px/1 var(--b);letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-3);margin-bottom:20px}
+.lede{font-size:clamp(19px,1.7vw,23px);color:var(--ink-2);max-width:62ch}
+.muted{color:var(--ink-3);font-size:15px}
+
+/* пружины по числам Apple: damping 1.0 / response 0.4 = без отскока, дефолт для всего */
+.btn{--sp-r:.4s;display:inline-flex;align-items:center;gap:.6em;padding:17px 30px;
+  border-radius:999px;background:var(--ink);color:var(--paper);text-decoration:none;
+  font:500 16px/1 var(--b);border:0;cursor:pointer;
+  transition:transform var(--sp-r) cubic-bezier(.22,1,.36,1),background var(--sp-r) ease}
+.btn:hover{background:#000}
+.btn:active{transform:scale(.972)}          /* отклик на pointer-down, не на отпускании */
+.btn:focus-visible{outline:2.5px solid var(--accent);outline-offset:3px}
+.btn--ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn[disabled]{opacity:.42;cursor:not-allowed}
+
+/* ⚠️ СКИП-ССЫЛКА (правка 21.08). Раньше её показывал инлайновый onfocus, и CSP
+   страницы его блокировала: `script-src 'self' …` без отдельного `script-src-attr`,
+   а Firefox эту директиву применяет и режет обработчик ещё при разборе атрибута.
+   Ссылка при табуляции не появлялась, а в консоли на каждой странице висела ошибка.
+   Появление на фокусе не нуждается в скрипте вообще — это одно правило CSS.
+   ⚠️ Именно :focus, а не :focus-visible: элемент уведён за левую кромку и мышью
+   недостижим — любой фокус здесь клавиатурный, а :focus срабатывает ещё и на
+   программном .focus() из теста.
+   ⚠️ z-index 80 — ВЫШЕ навбара (60). Навбар fixed и на телефоне начинается с 4vw,
+   то есть примерно с тех же 16px: без слоя кнопка выезжала бы под стеклянную пилюлю.
+   ⚠️ top задан явно. У absolute без top отсчёт идёт от статического места в потоке,
+   а оно зависит от того, что стоит выше в body, — привязка на будущее хрупкая. */
+.skip{position:absolute;top:16px;left:-9999px;z-index:80}
+.skip:focus{left:16px}
+
+/* liquid-glass навбар */
+.nav{position:fixed;inset:10px 0 auto;z-index:60;pointer-events:none}
+.nav__in>*{pointer-events:auto}
+.nav__in{width:min(860px,90vw);margin:0 auto;display:flex;align-items:center;gap:16px;
+  padding:6px 6px 6px 18px;border-radius:999px;pointer-events:auto;
+  background:rgba(255,255,255,.24);backdrop-filter:blur(24px) saturate(1.8);
+  -webkit-backdrop-filter:blur(24px) saturate(1.8);border:1px solid rgba(255,255,255,.32);
+  box-shadow:0 1px 0 rgba(255,255,255,.5) inset,0 10px 32px rgba(0,0,0,.1);
+  transition:transform .4s cubic-bezier(.22,1,.36,1),background .3s ease}
+.nav__brand{font:700 13px/1 var(--d);letter-spacing:-.01em}
+.nav__brand span{color:var(--ink-3);font-weight:500}
+.nav__links{margin-left:auto;display:flex;gap:18px;font-size:12.5px}
+.nav__links a{text-decoration:none;color:var(--ink-2);font-weight:500}
+.nav__links a:hover{color:var(--ink)}
+/* Переключатели языков скрыты */
+.nav__langs{display:none}
+.nav__cta{padding:7px 15px;font-size:12.5px}
+.btn-s{display:none}
+/* ⚠️ Порог 860 → 900. Замер на проде: между 861 и 893 px строка разделов, языки и
+   кнопка НЕ ВЛЕЗАЛИ в пилюлю навбара — она переполнялась на 29 px (861), 11 (880).
+   Дефект был и до появления меню; теперь ровно в этой полосе разделы уходят
+   под бургер, где им и место. */
+@media(max-width:900px){.nav__links{display:none}
+  .nav__in{justify-content:space-between}
+  .nav__cta{padding:9px 15px;font-size:13.5px;margin-left:0}
+  .btn-l{display:none}.btn-s{display:inline}}
+
+/* ─── меню на телефоне (правка 21.08) ───
+   До неё разделов на узком экране не было вообще: .nav__links скрыты ниже 860 px,
+   и в «Планировку» или «Цену» можно было попасть только прокруткой всей страницы.
+   ⚠️ Языки уезжают в панель, а не остаются в баре: замер бара показал, что он и без
+   бургера переполнен — на 320 px не хватало 11 px, а переключатель занимал 92 из 294.
+   Кнопку и панель строит site.js клонированием уже существующих ссылок. */
+.nav__burger{display:none;appearance:none;border:0;background:transparent;cursor:pointer;
+  width:38px;height:38px;padding:9px;margin-left:auto;border-radius:12px;
+  flex-direction:column;justify-content:space-between}
+.nav__burger i{display:block;height:2px;border-radius:2px;background:var(--ink-2);
+  transition:transform .3s cubic-bezier(.22,1,.36,1),opacity .2s}
+.nav__burger:hover i{background:var(--ink)}
+.nav__burger:focus-visible{outline:2.5px solid var(--accent);outline-offset:2px}
+/* Раскрытый бургер становится крестом: иначе непонятно, чем закрыть панель. */
+.nav__burger[aria-expanded=true] i:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav__burger[aria-expanded=true] i:nth-child(2){opacity:0}
+.nav__burger[aria-expanded=true] i:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.nav__menu{width:min(1240px,92vw);margin:8px auto 0;padding:8px;border-radius:26px;
+  pointer-events:auto;background:rgba(248,246,242,.9);
+  backdrop-filter:blur(18px) saturate(1.5);-webkit-backdrop-filter:blur(18px) saturate(1.5);
+  border:1px solid rgba(255,255,255,.55);box-shadow:0 10px 34px rgba(29,28,25,.13)}
+.nav__menu[hidden]{display:none}
+.nav__menu-links{display:flex;flex-direction:column}
+.nav__menu-links a{display:block;padding:13px 16px;border-radius:16px;
+  font:500 16px/1.2 var(--b);color:var(--ink);text-decoration:none}
+.nav__menu-links a:active{background:var(--paper-2)}
+.nav__menu-langs{display:flex;gap:6px;padding:10px 10px 4px;margin-top:4px;
+  border-top:1px solid var(--line)}
+.nav__menu-langs a{padding:9px 13px;border-radius:999px;background:var(--paper-2);
+  font:500 13.5px/1 var(--b);letter-spacing:.06em;color:var(--ink-2);text-decoration:none}
+.nav__menu a:focus-visible{outline:2.5px solid var(--accent);outline-offset:2px}
+@media(max-width:900px){
+  .nav__burger{display:flex}
+  .nav__langs{display:none}
+}
+@media(min-width:901px){.nav__menu{display:none}}
+
+/* ─── HERO: единственный вау. Дом заходит перед буквами ─── */
+.hero{position:relative;height:280svh}
+.hero__pin{position:sticky;top:0;height:100svh;overflow:clip}
+.hero__canvas{position:absolute;inset:0;width:100%;height:100%;display:block;
+  image-rendering:-webkit-optimize-contrast;image-rendering:crisp-edges;
+  transform:translateZ(0);backface-visibility:hidden}
+.hero__poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  image-rendering:-webkit-optimize-contrast}
+.hero__grain{position:absolute;inset:0;pointer-events:none;opacity:.018;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/></filter><rect width='140' height='140' filter='url(%23n)'/></svg>");
+  mix-blend-mode:overlay}
+.hero__veil{position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(20,19,17,.34) 0%,rgba(20,19,17,0) 34%,rgba(20,19,17,.06) 62%,rgba(20,19,17,.5) 100%)}
+/* Отдельная подложка ПОД копирайтом героя. Общая завеса в зоне фактов даёт всего 6%
+   затемнения, и на светлом закатном кадре мелкий текст падает до 1.06:1 — поймано axe.
+   Крупный заголовок вытягивает text-shadow, а строчки фактов — нет. */
+.hero__scrim{position:absolute;left:0;right:0;bottom:0;height:64%;pointer-events:none;
+  background:linear-gradient(180deg,rgba(16,15,13,0) 0%,rgba(16,15,13,.34) 32%,rgba(16,15,13,.62) 62%,rgba(16,15,13,.82) 100%)}
+.hero__copy{position:absolute;left:0;right:0;bottom:clamp(38px,7vh,86px);color:#fbf9f5}
+.hero__copy h1{text-shadow:0 1px 3px rgba(0,0,0,.42),0 2px 40px rgba(0,0,0,.32)}
+.hero__row{display:flex;flex-wrap:wrap;align-items:center;gap:24px;margin-top:22px}
+.hero__facts{display:flex;gap:30px;flex-wrap:wrap;font:500 15px/1.3 var(--b);opacity:.94}
+.hero__facts b{display:block;font:700 27px/1.1 var(--d);letter-spacing:-.02em}
+.hero .btn{background:#fbf9f5;color:var(--ink)}
+@media(max-width:760px){
+  .hero{height:380svh}
+  .hero__pin{display:flex;flex-direction:column;background:var(--paper);padding-top:64px}
+  .hero__canvas{position:relative;inset:auto;width:100%;height:auto;aspect-ratio:16/11}
+  .hero__poster{position:absolute;top:64px;left:0;width:100%;height:auto;aspect-ratio:16/11}
+  .hero__veil,.hero__grain,.hero__scrim{display:none}
+  .hero__copy{position:relative;bottom:auto;color:var(--ink);padding-top:16px}
+  .hero__copy .eyebrow{color:var(--ink-3)!important}
+  .hero__copy h1{text-shadow:none;font-size:36px}
+  .hero__facts div{color:var(--ink)}
+  .hero__facts span{color:var(--ink-2)}
+  .hero .btn{background:var(--ink);color:#fbf9f5}
+}
+/* ─── ПОДСКАЗКА ПРОКРУТКИ · правый нижний угол (правка 23.08) ───
+   Была по центру нижней кромки, тем же кеглем и приёмом, что подписи фактов, и прямо
+   под ними — читалась как ещё одна подпись и терялась. Ушла в угол, по правой кромке
+   .wrap: там пусто на любой ширине и рядом нет ни одного похожего набора.
+   ⚠️ Лок-ап ОДНОСТРОЧНЫЙ. Полоса ниже ряда фактов ~50 px на 720p, а на 1024 ряд
+   «факты + кнопка» занимает всю ширину: вторая строка наехала бы на кнопку.
+   ⚠️ Анимации — на внутренних элементах, не на #heroHint: подсказку гасит site.js
+   инлайновым opacity, а анимация в каскаде сильнее инлайна и не дала бы её спрятать.
+   ⚠️ Прозрачность фразы = 1: hero_contrast.py ищет тело буквы по цвету #fbf9f5,
+   полупрозрачный текст выпал бы из замера. Иерархию держат кегль и цвет ключа. */
+.hero__scroll{position:absolute;left:0;right:0;bottom:clamp(12px,2vh,22px);margin:0;
+  color:#fbf9f5;pointer-events:none;transition:opacity .45s cubic-bezier(.22,1,.36,1)}
+.hero__scroll .wrap{display:flex;justify-content:flex-end}
+.hint{display:inline-flex;align-items:center;text-shadow:0 1px 3px rgba(0,0,0,.55);
+  animation:hint-in 1s cubic-bezier(.22,1,.36,1) .8s both}
+.hint__in{display:inline-flex;align-items:center;gap:10px;
+  animation:hint-wake 4.6s cubic-bezier(.22,1,.36,1) 6s 3}
+.hint__k{font:500 12px/1 var(--b);letter-spacing:.2em;text-transform:uppercase;opacity:.68}
+.hint__d{opacity:.42;margin:0 -2px}
+.hint__t{font:500 14px/1.1 var(--b);letter-spacing:.1em;text-transform:uppercase}
+.hint__rail{position:relative;width:1px;height:26px;margin-left:5px;
+  background:linear-gradient(180deg,rgba(251,249,245,.02),rgba(251,249,245,.46) 26%,rgba(251,249,245,.04))}
+/* ⚠️ По рельсу идёт СВЕТ, а не точка. Круглая точка 5×5 с бесконечной анимацией —
+   это «пульсирующий индикатор состояния», и impeccable ловит её отдельным правилом
+   (pulsing-dot): такая точка обещает живые данные, которых у подсказки нет.
+   Полоска в 2 px по ширине рельса читается как блик на направляющей — тот же зов
+   глазу, честная метафора и чистый отчёт.
+   ⚠️ И БЕЗ border-radius: скругление в 1 px на ширине 2 px — это по геометрии пилюля,
+   правило считает такую полоску той же круглой точкой. Концы гасит градиент, углов
+   на экране нет вовсе, а отчёт остаётся чистым. */
+.hint__rail::after{content:"";position:absolute;left:-.5px;top:0;width:2px;height:9px;
+  box-shadow:0 0 8px rgba(251,249,245,.6);
+  background:linear-gradient(180deg,rgba(251,249,245,0),#fbf9f5 46%,rgba(251,249,245,0));
+  animation:hint-glide 2.9s cubic-bezier(.45,0,.3,1) 1.4s infinite}
+@keyframes hint-in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes hint-wake{0%,100%{transform:none}9%{transform:translateY(-4px)}30%{transform:none}}
+@keyframes hint-glide{0%{transform:translateY(0);opacity:0}10%{opacity:1}
+  52%{transform:translateY(17px);opacity:1}66%,100%{transform:translateY(17px);opacity:0}}
+/* ⚠️ Мобильные правила стоят ЗДЕСЬ, а не в общем блоке @media выше: медиазапрос
+   специфичности не добавляет, и выше по файлу они проиграли бы базовым .hint__*
+   просто по порядку.
+   ⚠️ На телефоне подсказка — ПОДПИСЬ НА ФОТО, а не строка у нижней кромки пина.
+   Причина замерена, не придумана: копирайт героя выше самого пина (iPhone 13 —
+   697 px против 664), нижняя полоса экрана обрезана `overflow:clip` вместе с
+   кнопкой. Абсолют у низа ложился ПОВЕРХ кнопки (так и стоит на проде), поток
+   уходил под обрез и пропадал совсем. Фото же стоит на известном месте всегда.
+   Место задаёт flex-order — подсказка идёт сразу за холстом, — а отрицательный
+   маргин ровно в высоту блока (56+27+14) снимает её из потока: раскладка героя
+   не сдвигается ни на пиксель. Градиент тот же, что под подписями бенто.
+   ⚠️ position:relative обязателен, и не ради координат. Холст героя на телефоне —
+   position:relative, то есть по порядку отрисовки он ВЫШЕ фона непозиционированного
+   блока: подложка подсказки закрашивалась холстом целиком и не показывалась вовсе
+   (диагностика: залил блок красным — красного на экране нет). Текст при этом было
+   видно, и дефект прятался за этим. Позиционируем — подложка выходит на свой слой. */
+@media(max-width:760px){
+  .hero__copy{order:1}
+  /* ⚠️ Подложка — ПЯТНО, а не полоса. Линейный градиент во всю ширину упирался
+     максимумом прямо в кромку фото и читался как тёмная лента под домом (правка по
+     замечанию оператора 23.08). Радиальное пятно гаснет до нуля и по бокам, и до
+     нижней кромки: под буквами тот же контраст, ленты нет. Отступы 44/26 вместо
+     56/14 — чтобы пятну было где погаснуть снизу; сумма блока прежняя, 97 px,
+     значит и margin-top прежний, и раскладка героя не сдвигается. */
+  .hero__scroll{position:relative;order:0;margin-top:-97px;padding:44px 0 26px;
+    background:radial-gradient(48% 46% at 50% 59%,rgba(20,19,17,.82),rgba(20,19,17,.74) 36%,rgba(20,19,17,0) 100%)}
+  .hero__scroll .wrap{justify-content:center}
+}
+/* ⚠️ ВЫШЕ, НА ЛИНИЮ КНОПКИ «Записаться на показ» — но только там, где лок-ап туда
+   действительно влезает (просьба оператора 23.08). Порог у каждого языка СВОЙ и
+   посчитан, а не подобран: строка фактов и ширина кнопки разные, и условие одно —
+       min(1240px, 92vw) − (факты + 26 + кнопка) ≥ ширина лок-апа + 36 просвета.
+   Ниже порога подсказка остаётся у нижней кромки, в том же правом углу: на 1024
+   ряд «факты + кнопка» занимает всю ширину, и подниматься там просто некуда.
+   ⚠️ bottom растёт ВВЕРХ: +11 px к нижней кромке копирайта — это ровно половина
+   разницы высот кнопки (50) и лок-апа (27), то есть они центрируются друг по другу. */
+@media(min-width:1250px){.hero__scroll{bottom:calc(clamp(38px,7vh,86px) + 11px)}}
+/* ⚠️ Отдельным правилом: общий блок в конце страницы глушит анимации селектором `*`,
+   а `*` не матчит псевдоэлементы — блик иначе бегал бы вопреки запрету движения. */
+@media(prefers-reduced-motion:reduce){.hint__rail::after{display:none}}
+
+/* ─── VALUE ─── */
+.value{background:var(--card);border-block:1px solid var(--line)}
+.value__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:40px}
+.value__i b{display:block;font:700 20px/1.25 var(--d);letter-spacing:-.01em;margin-bottom:9px}
+.value__i p{color:var(--ink-2);font-size:15.5px;margin:0}
+
+/* ─── бенто-композиция, не сетка одинаковых карточек ─── */
+.bento{display:grid;gap:16px;grid-template-columns:repeat(6,1fr);grid-auto-rows:clamp(300px,32vw,540px)}
+.bento figure{margin:0;position:relative;overflow:hidden;border-radius:var(--r);
+  background:var(--paper-2)}
+.bento img{width:100%;height:100%;object-fit:cover}
+.bento figcaption{position:absolute;left:0;right:0;bottom:0;padding:26px 22px 20px;
+  color:#fbf9f5;font-size:15px;line-height:1.4;
+  background:linear-gradient(180deg,rgba(20,19,17,0),rgba(20,19,17,.72))}
+.bento figcaption b{display:block;font:700 18px/1.2 var(--d);letter-spacing:-.01em;margin-bottom:5px}
+.b-w{grid-column:span 6}
+.b-h{grid-column:span 3}
+.b-a{grid-column:span 4}
+.b-b{grid-column:span 2}
+.b-c{grid-column:span 2}
+.b-d{grid-column:span 4}
+@media(max-width:760px){.bento{grid-template-columns:repeat(2,1fr);grid-auto-rows:auto}
+  .b-a,.b-b,.b-c,.b-d,.b-w,.b-h{grid-column:span 2;aspect-ratio:16/10}}
+
+/* ─── specs ─── */
+.specs{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+  border-top:1px solid var(--line)}
+.specs div{padding:30px 16px 0;border-right:1px solid var(--line);text-align:center}
+.specs div:last-child{border-right:0}
+.specs b{display:block;font:700 clamp(30px,3.4vw,46px)/1 var(--d);letter-spacing:-.03em}
+.specs span{display:block;color:var(--ink-3);font-size:14px;margin-top:9px}
+
+/* ─── живой 3D ─── */
+/* ── обвязка сцены: панель ракурсов, плашка изменений, сводка конфигуратора ──
+   Всё это появилось 20.08: до него сцена не подсказывала ни что можно сделать,
+   ни что изменила только что нажатая кнопка. */
+.stage-bar{position:absolute;left:12px;right:12px;bottom:12px;display:flex;gap:6px;
+  flex-wrap:wrap;align-items:center;pointer-events:none}
+.stage-bar>*{pointer-events:auto}
+.stage-bar__t{color:#d6d1c6;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;
+  background:rgba(20,19,17,.6);padding:6px 10px;border-radius:999px;
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.stage-bar .sw{background:rgba(20,19,17,.6);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.stage-bar .sw[aria-pressed=true]{background:rgba(255,255,255,.16)}
+.toast3d{position:absolute;left:50%;top:14px;transform:translateX(-50%);
+  max-width:calc(100% - 28px);padding:9px 18px;border-radius:999px;
+  background:rgba(20,19,17,.84);color:#f7f4ee;font:500 13.5px/1.35 var(--b);
+  text-align:center;opacity:0;transition:opacity .32s;pointer-events:none;
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.toast3d.on{opacity:1}
+.cfg-sum{border-top:1px solid rgba(255,255,255,.12);margin-top:20px;padding-top:16px}
+.cfg-sum p{margin:0}
+.cfg-sum__t{color:#cfcabf;font-size:13.5px;line-height:1.5}
+.cfg-sum__p{margin-top:7px !important;font:600 21px/1.15 var(--d);color:#f7f4ee;letter-spacing:-.02em}
+@media(max-width:620px){.stage-bar__t{display:none}
+  .stage-bar{gap:5px}
+  .stage-bar .sw{font-size:11.5px;padding:5px 9px}}
+
+.studio{background:var(--ink);color:#f2efe9;border-radius:calc(var(--r) + 8px);overflow:hidden}
+@media(min-width:981px){
+  .studio{display:grid;grid-template-columns:1fr 330px;grid-template-rows:auto 1fr auto}
+  .studio__tabs{grid-column:1/-1}
+  .studio__stage{grid-column:1;grid-row:2}
+  .studio__panel{grid-column:2;grid-row:2;overflow-y:auto;align-content:start;
+    border-left:1px solid rgba(255,255,255,.1)}
+}
+.studio__stage{position:relative;background:#26251f}
+.studio__views{display:none}
+@media(min-width:981px){.studio__stage{height:100%;min-height:380px}}
+@media(max-width:980px){.studio__stage{aspect-ratio:16/9;max-height:62vh}}
+@media(max-width:760px){.studio__stage{aspect-ratio:4/3}}
+.studio__stage canvas{width:100%;height:100%;display:block;touch-action:pan-y}
+.studio__fallback{position:absolute;inset:0;display:none;flex-direction:column;
+  align-items:center;justify-content:center;gap:14px;text-align:center;padding:30px;
+  background:#26251f url('/assets/img/arch_front.220dc657.webp') center/cover}
+.studio__fallback p{max-width:34ch;margin:0;padding:12px 18px;border-radius:999px;
+  background:rgba(20,19,17,.66);font-size:14.5px}
+.studio.is-fallback .studio__fallback{display:flex}
+.studio__tabs{display:flex;gap:6px;padding:14px 16px;border-bottom:1px solid rgba(255,255,255,.1)}
+.hs-card .hs-x{position:absolute;top:8px;right:10px;width:28px;height:28px;border:0;
+  background:none;color:#8d8a82;font:400 22px/1 var(--b);cursor:pointer;padding:0}
+.hs-card .hs-x:hover{color:#1d1c19}
+/* Подсказка под сценой перестала быть декоративной — теперь это инструкция
+   («тяните, чтобы оглядеться»), и её обязан прочитать любой. #7d7970 давал 3.92:1
+   при норме 4.5 (замер axe 20.08). */
+.studio__foot{display:flex;align-items:center;padding:16px;border-top:1px solid rgba(255,255,255,.1);
+  color:#a8a49a;font-size:13px}
+@media(min-width:981px){.studio__foot{grid-column:1/-1}}
+.tab{appearance:none;border:0;background:transparent;color:#a8a49a;font:500 14.5px/1 var(--b);
+  padding:10px 16px;border-radius:999px;cursor:pointer;transition:color .3s,background .3s}
+.tab[aria-selected=true]{background:rgba(255,255,255,.1);color:#f7f4ee}
+.tab:focus-visible{outline:2.5px solid var(--accent-dark);outline-offset:2px}
+.hs{position:absolute;width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:50%;
+  border:1.5px solid rgba(255,255,255,.85);background:rgba(255,255,255,.18);
+  backdrop-filter:blur(6px);cursor:pointer;padding:0;
+  transition:transform .4s cubic-bezier(.22,1,.36,1),background .3s}
+.hs::after{content:'';position:absolute;inset:11px;border-radius:50%;background:#fff}
+.hs:hover,.hs[aria-expanded=true]{transform:scale(1.22);background:rgba(255,255,255,.34)}
+.hs:focus-visible{outline:2.5px solid #fff;outline-offset:3px}
+.hs-card{position:absolute;z-index:5;width:min(320px,72vw);padding:20px 22px;
+  border-radius:var(--r);background:rgba(252,250,246,.95);color:var(--ink);
+  backdrop-filter:blur(14px);box-shadow:0 20px 60px rgba(0,0,0,.34)}
+.hs-card h3{margin-bottom:7px}
+.hs-card p{font-size:15px;color:var(--ink-2);margin-bottom:12px}
+.hs-card a{font:500 14.5px/1 var(--b);color:var(--accent);text-decoration:none}
+.hs-card a:hover{text-decoration:underline}
+.studio__panel{display:grid;grid-template-columns:1fr auto;gap:26px;align-items:end;
+  padding:26px 26px 30px}
+@media(min-width:981px){.studio__panel{grid-template-columns:1fr;gap:8px;align-items:start;padding:14px 18px 16px}
+  .studio__panel .opt{margin-bottom:9px}
+  .studio__panel .opt__t{margin-bottom:6px}
+  .studio__panel .sw{padding:7px 12px;font-size:13px}
+  .price{text-align:left;border-top:1px solid rgba(255,255,255,.12);padding-top:10px}
+  .price b{font:700 24px/1 var(--d)}}
+@media(max-width:860px){.studio__panel{grid-template-columns:1fr}}
+.opt{margin-bottom:20px}
+.opt__t{font:500 12px/1 var(--b);letter-spacing:.14em;text-transform:uppercase;
+  color:#a8a49a;margin-bottom:11px}
+.opt__row{display:flex;gap:9px;flex-wrap:wrap}
+.sw{appearance:none;border:1px solid rgba(255,255,255,.22);background:transparent;
+  color:#e6e2da;border-radius:999px;padding:9px 17px;font:500 14px/1 var(--b);cursor:pointer;
+  display:inline-flex;align-items:center;gap:9px;
+  transition:transform .4s cubic-bezier(.22,1,.36,1),border-color .3s,background .3s}
+.sw:active{transform:scale(.96)}
+.sw[aria-pressed=true]{border-color:#fff;background:rgba(255,255,255,.13);color:#fff}
+.sw:focus-visible{outline:2.5px solid var(--accent-dark);outline-offset:2px}
+.sw i{width:16px;height:16px;border-radius:50%;display:block;border:1px solid rgba(0,0,0,.22)}
+.price{text-align:right}
+@media(max-width:860px){.price{text-align:left}}
+.price b{display:block;font:700 clamp(28px,3.2vw,42px)/1 var(--d);letter-spacing:-.03em}
+.price span{color:#a8a49a;font-size:14px;display:block;margin-top:8px}
+
+/* ─── планировка: наш поэтажный чертёж ───
+   Лист SVG приходит БЕЗ шапки и БЕЗ колонки экспликации (bin/gen_plans_web.py,
+   chrome=False): имя комнаты, впечатанное в SVG, на ширине колонки даёт 8–9 px и
+   читается текстурой, а не текстом. Поэтому чертёж забирает всю ширину, а
+   экспликация под ним — настоящий HTML: 14 px, выделяется, переводится,
+   подсвечивается по наведению. Номер комнаты на чертеже — 0,52 м, это ≈18 px. */
+.plan{position:relative;margin:34px 0 0;background:var(--card);border:1px solid var(--line);
+  border-radius:calc(var(--r) + 4px);overflow:hidden}
+.plan__bar{display:grid;grid-template-columns:auto 1fr auto auto;gap:10px 20px;
+  align-items:center;padding:14px 18px;border-bottom:1px solid var(--line)}
+.plan__tabs{display:flex;gap:6px}
+.ptab{appearance:none;border:1px solid transparent;background:transparent;color:var(--ink-3);
+  font:500 14.5px/1 var(--b);padding:10px 16px;border-radius:999px;cursor:pointer;
+  transition:color .3s,background .3s,border-color .3s}
+.ptab:hover{color:var(--ink)}
+.ptab[aria-selected=true]{background:var(--paper-2);border-color:var(--line);color:var(--ink)}
+.ptab:focus-visible{outline:2.5px solid var(--accent);outline-offset:2px}
+.plan__sub{margin:0;color:var(--ink-3);font-size:13.5px;line-height:1.45}
+.plan__area{margin:0;white-space:nowrap;font:500 14px/1 var(--b);color:var(--ink-3)}
+.plan__area b{font:700 clamp(24px,2.3vw,31px)/1 var(--d);color:var(--bronze);
+  letter-spacing:-.02em;margin-right:5px}
+.plan__zoom{appearance:none;border:1px solid var(--line);background:transparent;
+  color:var(--ink-2);font:500 13.5px/1 var(--b);padding:10px 15px;border-radius:999px;
+  cursor:pointer;white-space:nowrap;transition:background .3s,color .3s}
+.plan__zoom:hover{background:var(--paper-2);color:var(--ink)}
+.plan__zoom:focus-visible{outline:2.5px solid var(--accent);outline-offset:2px}
+.plan__zoom [data-close]{display:none}
+
+/* Бумага листа — тот же #f7f5f0, что залит внутри SVG: шва между кадром и листом нет. */
+.plan__sheet{position:relative;background:#f7f5f0;aspect-ratio:3560/2500;
+  opacity:1;transition:opacity .18s}
+.plan.is-swap .plan__sheet{opacity:.25}
+.plan__sheet svg{display:block;width:100%;height:auto}
+.plan__sheet img{display:block;width:100%;height:auto}
+.pl-room{cursor:default}
+.pl-room.is-on rect{fill:#dfcda6}
+.plan__tip{position:absolute;z-index:4;pointer-events:none;transform:translate(-50%,-108%);
+  background:rgba(29,28,25,.9);color:#f7f4ee;border-radius:8px;padding:7px 11px;
+  font:500 13px/1.3 var(--b);white-space:nowrap;
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.plan__tip i{display:block;font-style:normal;color:#cfcabf;font-size:12px;margin-top:2px}
+
+.plan__legend{padding:22px 20px 24px;border-top:1px solid var(--line)}
+.plan__legend-h{display:flex;justify-content:space-between;align-items:baseline;gap:16px;
+  margin-bottom:14px}
+.plan__legend-t{margin:0;font:700 12px/1 var(--b);letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ink)}
+.plan__scale{margin:0;font-size:12.5px;color:var(--ink-3);letter-spacing:.06em}
+.plan__scale a{color:var(--accent);text-decoration:none}
+.plan__scale a:hover{text-decoration:underline}
+.plan__scale a:focus-visible{outline:2.5px solid var(--accent);outline-offset:2px}
+.plan__rows{list-style:none;margin:0;padding:0;columns:4;column-gap:30px}
+@media(max-width:1000px){.plan__rows{columns:3}}
+@media(max-width:760px){.plan__rows{columns:2;column-gap:20px}}
+@media(max-width:440px){.plan__rows{columns:1}}
+.plan__rows li{break-inside:avoid;display:grid;grid-template-columns:22px 1fr auto;
+  gap:8px;align-items:baseline;padding:5px 7px;border-radius:7px;margin:0 -7px;
+  font-size:14px;line-height:1.35;transition:background .2s}
+.plan__rows li.is-on{background:var(--paper-2)}
+.plan__rows li b{font:700 12.5px/1.5 var(--b);color:var(--ink-3);font-variant-numeric:tabular-nums}
+.plan__rows li span{color:var(--ink)}
+.plan__rows li i{font-style:normal;color:var(--ink-3);font-variant-numeric:tabular-nums;
+  font-size:13.5px}
+.plan__rows li.is-out span,.plan__rows li.is-out i{color:var(--ink-3)}
+.plan__rows li.is-live{cursor:pointer}
+.plan__rows li.is-live span{text-decoration:underline;text-decoration-color:var(--line);
+  text-underline-offset:3px}
+.plan__rows li.is-live:hover span{text-decoration-color:var(--accent)}
+.plan__note{margin:14px 0 0;font-size:12.5px;color:var(--ink-3)}
+.plan__hint{margin:14px 0 0;font-size:13px;color:var(--ink-3)}
+/* Подсказка разная: мышью водят по комнатам, пальцем — открывают разворот. */
+.plan__hint--touch{display:none}
+@media(hover:none){.plan__hint{display:none}.plan__hint--touch{display:block}}
+
+/* ── телефон ──
+   Два измеренных выигрыша, оба про читаемость чертежа инлайном:
+   1) лист выходит в край экрана: на 390 px это 390 вместо 345 — плюс 13 % масштаба;
+   2) номер комнаты набирается КРУПНЕЕ (0.92 м вместо 0.52): CSS перебивает
+      presentation-атрибут font-size внутри инлайнового SVG, и глиф из 5 px
+      становится 13 px. В развороте номера возвращаются к своему кеглю —
+      там чертёж и так увеличен ступенями. */
+@media(max-width:760px){
+  .plan{width:100vw;margin-left:calc(50% - 50vw);border-left:0;border-right:0;
+    border-radius:0}
+  .plan:not(.is-full) .pl-labels text{font-size:92px}
+}
+@media(max-width:860px){
+  .plan__bar{grid-template-columns:1fr auto;gap:10px 14px}
+  .plan__area{text-align:right}
+  .plan__sub{grid-column:1/-1;order:3}
+  .plan__steps{order:4}
+  .plan__zoom{order:5;justify-self:start}
+  .plan.is-full .plan__zoom{grid-column:2;justify-self:end}
+}
+
+/* ── лист во весь экран ──
+   Это единственный способ прочитать чертёж на телефоне: 375 px на лист 35,6 м дают
+   10 px в метре, номер комнаты — 5 px. В развороте лист увеличивается ступенями,
+   а таскается нативным скроллом, без самодельного pan/zoom. */
+.plan.is-full{position:fixed;inset:0;z-index:60;margin:0;border:0;border-radius:0;
+  display:flex;flex-direction:column;background:var(--paper)}
+/* ⚠️⚠️ БРАУЗЕРНЫЙ ПИНЧ В РАЗВОРОТЕ ОТКЛЮЧЁН (правка 21.08).
+   Оператор с телефона: «открыл план, увеличил его пальцами, поскроллил, уменьшил
+   обратно — и теперь не могу свернуть». Связка такая: разворот это position:fixed,
+   а fixed в iOS привязан к LAYOUT-вьюпорту; пинч меняет VISUAL-вьюпорт, и после него
+   отрисовка панели и её место для нажатия расходятся — кнопка видна, а нажимается
+   пустота. Лечение — не пускать браузер зумить страницу внутри разворота:
+   touch-action без pinch-zoom, причём НА КАЖДОМ элементе (touch-action не
+   наследуется, а жест обслуживает тот элемент, на котором начался).
+   Увеличение никуда не делось — оно стало НАШИМ: ступени −/+ и собственный пинч
+   по чертежу, который двигает --pz (см. initPlan в site.js). */
+.plan.is-full,.plan.is-full *{touch-action:pan-x pan-y}
+.plan.is-full .plan__bar{flex:0 0 auto}
+.plan.is-full .plan__sheet{flex:1 1 auto;aspect-ratio:auto;overflow:auto;
+  -webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+.plan.is-full .plan__sheet svg{width:calc(100% * var(--pz,1));min-width:calc(100% * var(--pz,1))}
+/* В развороте главный — чертёж. На узком экране экспликация уезжает совсем:
+   она никуда не делась, её читают, когда разворот закрыт. */
+.plan.is-full .plan__sub{display:none}
+.plan.is-full .plan__legend{flex:0 0 auto;max-height:26vh;overflow:auto}
+@media(max-width:860px){.plan.is-full .plan__legend{display:none}}
+.plan.is-full .plan__zoom [data-open]{display:none}
+.plan.is-full .plan__zoom [data-close]{display:inline}
+.plan__steps{display:none;gap:6px;align-items:center}
+.plan.is-full .plan__steps{display:flex}
+.plan__steps button{appearance:none;width:34px;height:34px;border:1px solid var(--line);
+  background:transparent;color:var(--ink-2);border-radius:50%;cursor:pointer;
+  font:500 17px/1 var(--b)}
+.plan__steps button:hover{background:var(--paper-2)}
+.plan__steps button:focus-visible{outline:2.5px solid var(--accent);outline-offset:2px}
+.plan__steps span{font:500 13px/1 var(--b);color:var(--ink-3);min-width:44px;text-align:center;
+  font-variant-numeric:tabular-nums}
+@media(prefers-reduced-motion:reduce){
+  .plan__sheet,.plan__rows li,.pl-room rect{transition:none}
+}
+
+/* ── ЛИСТ НЕ ВЫШЕ ЭКРАНА (правка 21.08) ──
+   Оператор: «планы и экспликация не помещаются по высоте в экран — неудобно так их
+   смотреть». Замер до правки на ширине 1240: лист 1238 × 869, панель уровня 66,
+   экспликация 115 — карточка 1050 px при рабочей высоте окна ≈830, и экспликация
+   уходила за нижнюю кромку целиком.
+   Лечение из двух частей.
+   1) На широком окне экспликация встаёт СПРАВА от чертежа, как в печатном листе.
+      Тогда карточка это панель + чертёж, а список комнат читается одновременно
+      с планом, а не после прокрутки.
+   2) Высота листа СЧИТАЕТСЯ ОТ ЭКРАНА (тот же приём, что у сцены 3D), а не только
+      из пропорции. SVG внутри получает height:100% и вписывается сам
+      (preserveAspectRatio по умолчанию), поэтому чертёж НЕ растягивается — просто
+      поля бумаги становятся у́же. */
+@media(min-width:761px){
+  .plan:not(.is-full) .plan__sheet{max-height:calc(100vh - 190px);
+    max-height:calc(100svh - 190px);min-height:330px}
+  .plan:not(.is-full) .plan__sheet svg{height:100%}
+  /* Номер комнаты кегль 0.52 м: на 1238 px это 18 px, а на 920 px — уже 13.
+     CSS перебивает presentation-атрибут внутри инлайнового SVG (тот же приём, что
+     на телефоне), и номер возвращается к читаемым 16–17 px. */
+  .plan:not(.is-full) .pl-labels text{font-size:72px}
+}
+@media(min-width:1000px){
+  .plan{display:grid;grid-template-columns:minmax(0,1fr) 320px;grid-template-rows:auto 1fr}
+  .plan__bar{grid-column:1/-1}
+  .plan__sheet{grid-column:1;grid-row:2}
+  .plan__legend{grid-column:2;grid-row:2;border-top:0;border-left:1px solid var(--line);
+    overflow:auto;padding:18px 20px 20px}
+  .plan__rows{columns:1}
+  /* Строка экспликации ужата с 29 до 24 px: в одной колонке 21 строка давала 747 px —
+     ВЫШЕ самого чертежа, и карточку определял уже список, а не план. Замер: 1440 × 900
+     карточка была 814 при доступных 823, на 1366 × 768 — 814 при 691. */
+  .plan__rows li{padding:3px 7px;font-size:13.5px;line-height:1.3}
+  .plan__legend-h{margin-bottom:10px}
+  /* Тот же потолок, что у листа: карточка не перерастает экран ни при каком языке
+     и ни в одном из 12 состояний. Что не влезло — прокручивается внутри колонки. */
+  .plan:not(.is-full) .plan__legend{max-height:calc(100vh - 190px);
+    max-height:calc(100svh - 190px)}
+  /* В развороте вся эта раскладка отменяется: там главный — чертёж во весь экран. */
+  .plan.is-full{display:flex}
+  .plan.is-full .plan__sheet,.plan.is-full .plan__legend{grid-column:auto;grid-row:auto}
+}
+
+/* ─── телефон: 3D-конфигуратор в один экран ─── */
+/* Замер до правки (390 × 844): карточка #studio3d — 1070 px при экране 844.
+   Сцена и кнопки не помещались вместе, и человек крутил дом, не видя, что меняет.
+   Ужимаем ОБВЯЗКУ — вкладки, поля панели, кегли, — а не саму сцену. */
+@media(max-width:760px){
+  .studio__tabs{padding:7px 10px;gap:4px}
+  .tab{padding:8px 13px;font-size:13.5px}
+  /* Высота сцены СЧИТАЕТСЯ от экрана, а не задаётся пропорцией: вся остальная
+     обвязка на телефоне занимает ≈495 px, плавающая шапка 70 px и запас 35 px. Что
+     осталось —
+     то и отдаём дому. Так на 844 сцена крупнее прежнего, а на низком экране
+     карточка всё равно не вылезает. svh (не vh) — потому что вычитаем: он даёт
+     МЕНЬШУЮ сцену, когда у Safari развёрнута адресная строка, а не большую. */
+  /* ⚠️ 600 → 528 (правка 21.08). Оператор: «окно, где крутится 3D, маленькое, да ещё
+     и кнопки съедают его часть». Вычитаемое уменьшено ровно на то, что удалось
+     отнять у обвязки: ряды пилюль конфигуратора перестали переноситься на вторую
+     строку (−74 px) и поля групп ужаты (−10 px), а панель ракурсов ушла из кадра
+     в собственную строку (+34 px). Итог на 390 × 844: сцена 244 → 316 px, и все
+     316 — кадр, а не 208 видимых из 244. */
+  /* ⚠️ 553 → 590 (21.08, второй заход). Панель ракурсов перестала прокручиваться и
+     начала переноситься — значит она выросла с 35 px до 62 (шесть наружных ракурсов
+     в две строки) и до 89 (одиннадцать внутренних в три). Вычитаемое считано по
+     ХУДШЕМУ случаю — вкладка «Внутри», — иначе карточка вылезает за экран ровно там,
+     где человек и переключает точки обзора. */
+  .studio__stage{aspect-ratio:auto;height:calc(100vh - 605px);
+    height:calc(100svh - 605px);min-height:196px;max-height:58svh}
+  /* ⛔ Ветка отказа 3D была сломана НА ТЕЛЕФОНЕ ещё до правок 21.08 (смоук ловил её
+     как «фолбэк схлопнулся»: 172 px на iPhone 13). Когда движка нет, панели ракурсов
+     тоже нет — освободившееся место отдаём кадру дома, ради которого ветка и живёт. */
+  .studio.is-fallback .studio__stage{min-height:min(300px,44svh)}
+  .studio__panel{padding:10px 12px 12px}
+  .opt{margin-bottom:5px}
+  .opt__t{font-size:11px;letter-spacing:.12em;margin-bottom:3px}
+  /* Ряд пилюль — ОДНА строка с горизонтальной прокруткой. «Отделка» и «Спа и купель»
+     не влезали в 390 px и переносились на вторую строку: две группы × 37 px = 74 px,
+     отобранные у сцены. Недорезанная справа пилюля сама показывает, что список едет. */
+  .opt__row{gap:6px;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;
+    -webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;padding-bottom:1px}
+  .opt__row::-webkit-scrollbar{display:none}
+  .opt__row>*{flex:0 0 auto}
+  /* 8px по вертикали — не «ещё чуть-чуть»: ниже пилюля перестаёт быть
+     целью для пальца. Экономим на полях панели, а не на кнопках. */
+  .sw{padding:8px 12px;font-size:13px;gap:6px}
+  .sw i{width:13px;height:13px}
+  /* ⚠️ Ряд «Отделка» — единственный, который не влезал в ширину телефона: замер
+     показал нехватку 36–47 px (хуже всех португальский на 320). Уводить его в
+     перенос нельзя — это +37 px высоты там, где карточка и так впритык, поэтому
+     ужимаем ИМЕННО ЭТОТ ряд: три подписи с кружком цвета сжимаются на 48 px и
+     помещаются целиком. Остальные ряды остаются прежнего кегля.
+     Целимся по aria-labelledby: id подписи одинаков на всех пяти страницах. */
+  .opt__row[aria-labelledby="lbl-fin"] .sw{padding:8px 9px;font-size:12px;gap:4px}
+  .opt__row[aria-labelledby="lbl-fin"] .sw i{width:11px;height:11px}
+  .opt__row[aria-labelledby="lbl-fin"]{gap:5px}
+  .cfg-sum{margin-top:7px;padding-top:7px}
+  .cfg-sum__t{font-size:12.5px;line-height:1.35}
+  .cfg-sum__p{margin-top:4px !important;font-size:19px}
+  /* Подсказка ужата до ОДНОЙ строки: текст для телефона свой, короткий (site.js).
+     Две длинные строки съедали 50 px кадра, ради которых оператор и жаловался. */
+  .studio__foot{padding:5px 12px;font-size:11.5px;line-height:1.35;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
+  /* Панель ракурсов: ОДНА строка с горизонтальной прокруткой вместо трёх с переносом.
+     После того как в сцене появился верхний уровень, ракурсов стало девять, и в три
+     ряда они съедали 81 px из 244 — треть кадра. В одну строку это 27 px, а недорезанная
+     справа пилюля сама подсказывает, что список едет дальше. */
+  .stage-bar{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;
+    -webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
+  .stage-bar::-webkit-scrollbar{display:none}
+  .stage-bar .sw{flex:0 0 auto}
+  /* Панель ракурсов ВНЕ кадра: своя строка под сценой. Внутри кадра она лежала
+     накладкой и закрывала нижние 36 px из 244 — ровно ту полосу, где палуба и вода.
+     ⚠️ И она ПЕРЕНОСИТСЯ, а не прокручивается. Горизонтальная прокрутка досталась в
+     наследство от той поры, когда панель лежала поверх кадра и высота была на вес
+     золота. Вне кадра это прямой вред: половина ракурсов уезжала за правую кромку,
+     и оператор до них попросту не дотягивался. Кегль и поля ужаты так, чтобы
+     наружные шесть ракурсов вставали в две строки, а внутренние одиннадцать — в три. */
+  .studio__views{display:block;padding:4px 8px 5px;background:#201f1b}
+  .studio__views .stage-bar{flex-wrap:wrap;overflow:visible;gap:3px}
+  /* Поля пилюль урезаны до 7 px не «для красоты»: испанские подписи («Dormitorio
+     principal», «La bañera exterior») длиннее русских, и на 390 px одиннадцать точек
+     обзора вставали в ЧЕТЫРЕ строки вместо трёх — лишние 27 px выталкивали карточку
+     за экран. Замер ведётся по испанской странице, она худшая из пяти. */
+  .studio__views .stage-bar .sw{flex:0 1 auto;font-size:11px;padding:5px 7px;
+    max-width:100%;white-space:nowrap}
+  /* Пустая полоса (ветка отказа 3D — панели ракурсов нет) не должна оставлять шов. */
+  .studio__views:empty{display:none}
+  .studio__views .stage-bar{position:static;left:auto;right:auto;bottom:auto;
+    padding:0;margin:0}
+  .studio__views .stage-bar .sw{background:rgba(255,255,255,.07);
+    -webkit-backdrop-filter:none;backdrop-filter:none}
+  .studio__views .stage-bar .sw[aria-pressed=true]{background:rgba(255,255,255,.2)}
+}
+/* Самые узкие телефоны: русская «Отделка» («Тёплый белый · Графит · Натуральный»)
+   длиннее прочих языков и на 360–375 px не добирала последних 15 px. Ужимаем ряд
+   ещё немного ТОЛЬКО здесь — на 390 px и шире он и так помещается целиком. */
+@media(max-width:380px){
+  .opt__row[aria-labelledby="lbl-fin"] .sw{padding:8px 7px;font-size:11.5px}
+  .opt__row[aria-labelledby="lbl-fin"]{gap:4px}
+}
+/* Короткий экран (iPhone SE и любой телефон в горизонтальной адресной строке):
+   там не хватает уже и этого, поэтому сцена становится ещё шире по кадру, а
+   подсказка под ней прячется — она дублирует то, что человек и так делает пальцем. */
+@media(max-width:760px) and (max-height:740px){
+  .opt{margin-bottom:3px}
+  .cfg-sum{margin-top:5px;padding-top:5px}
+  .cfg-sum__t{font-size:12px}
+  .cfg-sum__p{font-size:18px}
+  .studio__stage{min-height:172px}
+  .studio__foot{display:none}
+  /* Короткий экран: пилюли ракурсов ещё плотнее, чтобы одиннадцать точек обзора
+     уложились в две строки вместо трёх. Ниже этого кегля подпись перестаёт читаться,
+     поэтому дальше ужимать нечего — на iPhone SE карточка честно чуть выше экрана. */
+  .studio__views{padding:4px 6px 5px}
+  .studio__views .stage-bar{gap:3px}
+  .studio__views .stage-bar .sw{font-size:10.5px;padding:4px 7px}
+}
+
+/* ─── прочее ─── */
+.split{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(30px,5vw,72px);align-items:center}
+@media(max-width:860px){.split{grid-template-columns:1fr}}
+.amen{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:34px}
+.amen div{padding-top:20px;border-top:1px solid var(--line)}
+.amen b{display:block;font:700 18px/1.2 var(--d);letter-spacing:-.01em;margin-bottom:7px}
+.amen p{color:var(--ink-2);font-size:15px;margin:0}
+.quotes{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px}
+.quote{padding:30px;border-radius:var(--r);background:var(--card);border:1px solid var(--line)}
+.quote p{font-size:17px;line-height:1.55}
+.quote footer{color:var(--ink-3);font-size:14px;margin-top:14px}
+.scarcity{display:flex;gap:10px;margin:26px 0 30px}
+.scarcity i{flex:1;height:7px;border-radius:99px;background:var(--paper-2)}
+.scarcity i.free{background:var(--accent)}
+.band{background:var(--ink);color:var(--paper);border-radius:calc(var(--r) + 8px);
+  padding:clamp(40px,5.5vw,72px);display:flex;flex-wrap:wrap;gap:30px;
+  align-items:center;justify-content:space-between}
+.band h2{max-width:18ch}
+.band .btn{background:var(--paper);color:var(--ink)}
+
+/* ─── форма ─── */
+.form{display:grid;gap:16px}
+.field label{display:block;font:500 13.5px/1 var(--b);color:var(--ink-2);margin-bottom:8px}
+.field input,.field textarea{width:100%;padding:15px 17px;border-radius:11px;
+  border:1px solid var(--line);background:var(--card);font:400 16px/1.4 var(--b);color:var(--ink)}
+.field input:focus,.field textarea:focus{outline:2.5px solid var(--accent);outline-offset:1px;
+  border-color:transparent}
+.field .err{display:block;color:#9a3b28;font-size:13.5px;margin-top:7px;min-height:1.15em}
+.field.bad input,.field.bad textarea{border-color:#9a3b28}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.summary{padding:17px 20px;border-radius:11px;background:var(--travertine);
+  font-size:15px;color:#4a4234}
+.ok{padding:30px;border-radius:var(--r);background:var(--card);border:1px solid var(--line)}
+
+/* ─── мобильная нижняя CTA-панель: role=region, иначе вне landmark'ов ─── */
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:55;display:none;padding:12px 16px
+  calc(12px + env(safe-area-inset-bottom));background:rgba(248,246,242,.9);
+  backdrop-filter:blur(16px);border-top:1px solid var(--line)}
+.dock .btn{width:100%;justify-content:center}
+
+
+footer.site{background:var(--ink);color:#c9c5bc;padding:var(--sp) 0 46px;margin-top:var(--sp)}
+footer.site a{color:var(--accent-dark)}
+.disclaimer{font-size:13.5px;line-height:1.6;color:#9a968d;max-width:78ch;margin-top:26px}
+
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms !important;transition-duration:.01ms !important}
+  /* Высоту героя тут НЕ схлопываем. Скраб не перехватывает прокрутку: он показывает
+     кадр, соответствующий тому, куда человек прокрутил сам, — это контент, а не
+     анимация. Схлопывание до height:auto делало дистанцию скраба отрицательной
+     (722px героя при окне 820px), target навсегда оставался 0, и облёта не было
+     вообще. Убираем инерцию сглаживания в site.js, а не сам облёт. */
+}
