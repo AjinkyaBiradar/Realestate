@@ -96,16 +96,16 @@ a{color:inherit}
 .nav{position:fixed;inset:10px 0 auto;z-index:60;pointer-events:none}
 .nav__in>*{pointer-events:auto}
 .nav__in{width:min(860px,90vw);margin:0 auto;display:flex;align-items:center;gap:16px;
-  padding:6px 6px 6px 18px;border-radius:999px;pointer-events:auto;
-  background:rgba(255,255,255,.24);backdrop-filter:blur(24px) saturate(1.8);
-  -webkit-backdrop-filter:blur(24px) saturate(1.8);border:1px solid rgba(255,255,255,.32);
-  box-shadow:0 1px 0 rgba(255,255,255,.5) inset,0 10px 32px rgba(0,0,0,.1);
+  padding:7px 8px 7px 20px;border-radius:999px;pointer-events:auto;
+  background:rgba(255,255,255,.58);backdrop-filter:blur(24px) saturate(1.8);
+  -webkit-backdrop-filter:blur(24px) saturate(1.8);border:1px solid rgba(255,255,255,.65);
+  box-shadow:0 1px 0 rgba(255,255,255,.8) inset,0 10px 32px rgba(0,0,0,.12);
   transition:transform .4s cubic-bezier(.22,1,.36,1),background .3s ease}
-.nav__brand{font:700 13px/1 var(--d);letter-spacing:-.01em}
+.nav__brand{font:700 13.5px/1 var(--d);letter-spacing:-.01em;color:var(--ink)}
 .nav__brand span{color:var(--ink-3);font-weight:500}
-.nav__links{margin-left:auto;display:flex;gap:18px;font-size:12.5px}
-.nav__links a{text-decoration:none;color:var(--ink-2);font-weight:500}
-.nav__links a:hover{color:var(--ink)}
+.nav__links{margin-left:auto;display:flex;gap:20px;font-size:13px}
+.nav__links a{text-decoration:none;color:var(--ink);font-weight:500;opacity:.82;transition:opacity .2s ease}
+.nav__links a:hover{opacity:1}
 /* Переключатели языков скрыты */
 .nav__langs{display:none}
 .nav__cta{padding:7px 15px;font-size:12.5px}

@@ -41,6 +41,8 @@ export default function Home() {
           <canvas
             className="hero__canvas"
             id="heroCanvas"
+            width={2560}
+            height={1440}
             aria-hidden="true"
             style={{ opacity: 0 }}
           ></canvas>
