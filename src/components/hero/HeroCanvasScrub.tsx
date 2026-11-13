@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { useEffect, useRef } from "react";
@@ -21,12 +22,6 @@ export default function HeroCanvasScrub() {
       EAGER: 18,
     };
 
-    const isLight =
-      typeof window !== "undefined" &&
-      (window.innerWidth < 820 ||
-        ((navigator as unknown as { deviceMemory?: number }).deviceMemory &&
-          (navigator as unknown as { deviceMemory?: number }).deviceMemory! <= 4));
-
     const manifestUrl = "/assets/hero/manifest.33b7384c.json";
     let isCancelled = false;
     let animId: number;
@@ -45,7 +40,7 @@ export default function HeroCanvasScrub() {
       });
 
     function run(man: { count: number; pos?: number[]; v?: string }) {
-      const dir = isLight ? "/assets/hero/m/" : "/assets/hero/";
+      const dir = "/assets/hero/";
       const n = man.count;
       const pos = man.pos || [];
       const imgs: (HTMLImageElement | null)[] = new Array(n).fill(null);
@@ -108,15 +103,19 @@ export default function HeroCanvasScrub() {
       }
 
       function fit() {
-        if (!canvas) return;
+        if (!canvas || !ctx) return;
         const r = canvas.getBoundingClientRect();
-        const dpr = Math.min(window.devicePixelRatio || 1, 2);
-        const w = Math.round(r.width * dpr);
-        const h = Math.round(r.height * dpr);
+        const dpr = Math.max(window.devicePixelRatio || 1, 1.5);
+        const rw = r.width || window.innerWidth || 1920;
+        const rh = r.height || window.innerHeight || 1080;
+        const w = Math.max(2560, Math.round(rw * dpr));
+        const h = Math.max(1440, Math.round(rh * dpr));
         if (canvas.width !== w || canvas.height !== h) {
           canvas.width = w;
           canvas.height = h;
         }
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = "high";
       }
 
       function draw(idx: number) {

@@ -45,7 +45,7 @@
 
     function run(man) {
       fit();
-      var dir = ASSETS + 'hero/' + (light ? 'm/' : '');
+      var dir = ASSETS + 'hero/';
       var n = man.count, pos = man.pos || [];
       var imgs = new Array(n), ready = new Array(n), loading = new Array(n);
       var current = 0, target = 0, shown = -1, last = 0, paused = false, handed = false;
@@ -83,12 +83,12 @@
       }
 
       function fit() {
-        var dpr = Math.min(Math.max(window.devicePixelRatio || 1, 1.5), 2.5);
+        var dpr = Math.max(window.devicePixelRatio || 1, 1.5);
         var r = canvas.getBoundingClientRect();
         var rw = r.width || window.innerWidth || 1920;
         var rh = r.height || window.innerHeight || 1080;
-        var w = Math.round(rw * dpr);
-        var h = Math.round(rh * dpr);
+        var w = Math.max(2560, Math.round(rw * dpr));
+        var h = Math.max(1440, Math.round(rh * dpr));
         if (canvas.width !== w || canvas.height !== h) {
           canvas.width = w;
           canvas.height = h;
@@ -102,9 +102,7 @@
         var im = ready[i] ? imgs[i] : null;
         if (!im) { for (var k = i; k >= 0; k--) if (ready[k]) { im = imgs[k]; break; } }
         if (!im) return;
-        var dpr = Math.min(Math.max(window.devicePixelRatio || 1, 1.5), 2.5);
-        var expectedW = Math.round((canvas.clientWidth || window.innerWidth) * dpr);
-        if (canvas.width !== expectedW) fit();
+        if (!canvas.width || !canvas.height) fit();
         ctx.imageSmoothingEnabled = true;
         ctx.imageSmoothingQuality = 'high';
         var cw = canvas.width, ch = canvas.height;
