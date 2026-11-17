@@ -5,9 +5,9 @@ import "./globals.css";
 import "./site.css";
 
 export const metadata: Metadata = {
-  title: "LAKE HOUSE · AIST Village — a lakeside residence 40 minutes from the city",
+  title: "KAIROS · Lakeside Sanctuary — Sustainable Nordic Architecture & Private Residences",
   description:
-    "Twelve lakeside residences in a pine forest. Three still available. From $800K · 420 m² · 4 bedrooms. A design concept by AIST Lab.",
+    "An exclusive enclave of eight sustainable lakeside residences in an old-growth pine archipelago. 420 m² dual cantilever pavilions from $1.25M. Net-zero geothermal living.",
   icons: {
     icon: [
       { url: "/assets/favicon.svg?v=3", type: "image/svg+xml" },

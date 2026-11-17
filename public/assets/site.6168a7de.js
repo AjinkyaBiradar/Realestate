@@ -183,12 +183,12 @@
   // en — в ТЫСЯЧАХ долларов, es — в ТЫСЯЧАХ евро (все значения кратны тысяче:
   // priceStr этим пользуется, форматируя «680.000 €»).
   var PRICE_EN = {
-    base: 800,
-    finish: { warm: 0, graphite: 25, natural: 12 },
-    bedrooms: { 2: -70, 4: 0, 5: 60 },
-    hamam: { none: 0, snow: 50, warm: 50 },
-    terrace: { std: 0, pool: 70 },
-    glazing: { panoramic: 0, sliding: 35 },
+    base: 1250,
+    finish: { warm: 0, graphite: 35, natural: 20 },
+    bedrooms: { 2: -90, 4: 0, 5: 85 },
+    hamam: { none: 0, snow: 65, warm: 65 },
+    terrace: { std: 0, pool: 95 },
+    glazing: { panoramic: 0, sliding: 45 },
   };
   var PRICE_ES = {
     base: 680,

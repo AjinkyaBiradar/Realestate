@@ -1,4 +1,6 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap');
+
 /* Метрики запасного шрифта подогнаны, чтобы подмена ничего не двигала: font-display
    оставлен swap. optional обнулил бы CLS, но навсегда оставил бы страницу на системном
    шрифте на медленной машине — то есть обменял бы метрику на тот самый дефолтный вид,
@@ -26,8 +28,9 @@
   size-adjust:101.5%;ascent-override:96%;descent-override:28%;line-gap-override:0%}
 
 :root{
-  --d:'Onest','Onest Fallback',sans-serif;
-  --b:'Golos','Golos Fallback',sans-serif;
+  --d:'Syne','Onest','Onest Fallback',sans-serif;
+  --serif:'Cinzel',serif;
+  --b:'Plus Jakarta Sans','Golos','Golos Fallback',sans-serif;
   --ink:#1d1c19; --ink-2:#4c4a44; --ink-3:#67635a;   /* 3.88:1 → 5.35:1, замер ниже */
   --paper:#f4f2ed; --paper-2:#eae7df; --card:#fffefb;
   --oak:#c8a877; --travertine:#e7e0d2; --stone:#9aa0a0; --bronze:#7c6a4f;

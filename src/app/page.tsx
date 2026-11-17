@@ -11,18 +11,18 @@ export default function Home() {
       <nav className="nav" aria-label="Primary">
         <div className="nav__in">
           <span className="nav__brand">
-            LAKE HOUSE <span>· AIST Village</span>
+            KAIROS <span>· Lakeside Sanctuary</span>
           </span>
           <div className="nav__links">
-            <a href="#hero">The house</a>
-            <a href="#studio">3D &amp; configurator</a>
-            <a href="#okruzhenie">Surroundings</a>
-            <a href="#plan">Floor plan</a>
-            <a href="#cena">Price</a>
+            <a href="#hero">The Sanctuary</a>
+            <a href="#studio">3D Pavilion</a>
+            <a href="#okruzhenie">Ecosystem</a>
+            <a href="#plan">Spatial Plan</a>
+            <a href="#cena">Acquisition</a>
           </div>
           <a className="btn nav__cta" href="#zayavka">
-            <span className="btn-l">Book a viewing</span>
-            <span className="btn-s">Book</span>
+            <span className="btn-l">Schedule Viewing</span>
+            <span className="btn-s">Reserve</span>
           </a>
         </div>
       </nav>
@@ -52,31 +52,31 @@ export default function Home() {
 
           <div className="hero__copy">
             <div className="wrap">
-              <p className="eyebrow" style={{ color: "rgba(251,249,245,.72)" }}>
-                Lakeside · pine forest · 12 residences
+              <p className="eyebrow" style={{ color: "rgba(251,249,245,.82)", letterSpacing: "0.22em", textTransform: "uppercase" }}>
+                Nordic Archipelago · Old-Growth Pine Sanctuary · 8 Residences
               </p>
               <h1>
-                A house you’ll never
+                Architecture carved
                 <br />
-                want to leave
+                from silence &amp; light
               </h1>
               <div className="hero__row">
                 <div className="hero__facts">
                   <div>
-                    <b>from $800K</b>turnkey
+                    <b>from $1.25M</b>turnkey Nordic CLT
                   </div>
                   <div>
-                    <b>420 m²</b>two levels
+                    <b>420 m²</b>dual cantilever pavilions
                   </div>
                   <div>
-                    <b>4 bedrooms</b>2 · 4 · 5 to choose from
+                    <b>4–5 suites</b>with private timber sauna
                   </div>
                   <div>
-                    <b>40 minutes</b>to the business district
+                    <b>35 minutes</b>to capital heliport &amp; port
                   </div>
                 </div>
                 <a className="btn" href="#zayavka">
-                  Book a viewing
+                  Schedule Private Viewing
                 </a>
               </div>
             </div>
@@ -90,7 +90,7 @@ export default function Home() {
                   <span className="hint__d" aria-hidden="true">
                     ·
                   </span>
-                  <span className="hint__t">the house turns</span>
+                  <span className="hint__t">explore the 3D sanctuary</span>
                   <span className="hint__rail" aria-hidden="true"></span>
                 </span>
               </span>
@@ -103,36 +103,39 @@ export default function Home() {
       <section className="sec value" id="dom">
         <div className="wrap">
           <p className="eyebrow">
-            Why this isn’t “just another development”
+            The Biophilic Philosophy
           </p>
           <div className="value__grid">
             <div className="value__i">
-              <b>The lake is yours, not shared</b>
+              <b>Untouched Nordic Waterline</b>
               <p>
-                A private waterfront and pier. Swim or paddle out right from
-                your doorstep — no neighbours on the shore.
+                A 120-meter private shoreline and cedar pier with deep-water
+                anchorage. Swim, kayak, or moor your craft directly from your
+                doorstep — complete seclusion with zero neighboring sightlines.
               </p>
             </div>
             <div className="value__i">
-              <b>The house stands right over the water</b>
+              <b>Cantilevered Over Mirror-Still Water</b>
               <p>
-                The lower deck cantilevers over the lake on piers, and a thin
-                sheet of water slides off its edge back into the lake. Life by
-                the water below, the quiet of the bedrooms above.
+                Two monolithic Shou Sugi Ban pavilions hover on concealed granite
+                pylons. The lower deck extends over the lake, where a thin infinity
+                sheet of clear water spills silently back into the lake.
               </p>
             </div>
             <div className="value__i">
-              <b>A smart home without a single remote</b>
+              <b>Autonomous Circadian &amp; Geothermal Living</b>
               <p>
-                Light and music follow the rhythm of your day on their own. The
-                speakers and sensors are built into the walls.
+                Underfloor geothermal heating, 12kW integrated solar glass, and
+                flush acoustic plaster walls that play music without visible
+                speakers. Ambient light follows the natural Nordic solar rhythm.
               </p>
             </div>
             <div className="value__i">
-              <b>80% of the plot is untouched forest</b>
+              <b>85% Preserved Old-Growth Forest</b>
               <p>
-                The house never shows off: two horizontal volumes hide below the
-                tree crowns, and the pine forest stays all around.
+                The architecture submits to the landscape: horizontal volumes
+                rest beneath ancient scots pine crowns, with mossy bedrock and
+                wild bilberry undergrowth preserved around every residence.
               </p>
             </div>
           </div>
@@ -142,20 +145,21 @@ export default function Home() {
       {/* ══ ARCHITECTURE / BENTO ══ */}
       <section className="sec">
         <div className="wrap">
-          <p className="eyebrow">Architecture</p>
-          <h2>The house from every side</h2>
+          <p className="eyebrow">Architectural Volumes</p>
+          <h2>Monolithic serenity from every vantage</h2>
           <div className="bento" style={{ marginTop: "38px" }}>
             <figure className="b-w">
               <img
                 src="/assets/img/arch_front.220dc657.webp"
-                alt="The villa from the water: two offset volumes of dark timber and glass on piers, water sliding off the deck edge"
+                alt="KAIROS villa from the water: two offset volumes of charred timber and glass on piers, water sliding off the deck edge"
                 loading="lazy"
                 width={1920}
                 height={1080}
               />
               <figcaption>
-                <b>From the water</b>The lower deck is cantilevered over the
-                lake; a thin sheet of water slides off its edge.
+                <b>Over the Water</b>The lower Shou Sugi Ban pavilion hovers
+                on concealed granite pylons; an infinity sheet of mirror water
+                cascades off the deck.
               </figcaption>
             </figure>
             <figure className="b-h">
@@ -167,8 +171,9 @@ export default function Home() {
                 height={720}
               />
               <figcaption>
-                <b>From the side</b>The upper volume is shifted off the lower
-                one — the cantilevers work both ways.
+                <b>The Dual Cantilever</b>The upper timber volume shifts along
+                the horizontal axis, providing dual cantilevered shelter and
+                dynamic sun-shading.
               </figcaption>
             </figure>
             <figure className="b-h">
@@ -180,8 +185,9 @@ export default function Home() {
                 height={720}
               />
               <figcaption>
-                <b>From above the pines</b>Seen from the forest side, the house
-                hides below the crowns — the lake opens up beyond it.
+                <b>Pines &amp; Topography</b>Viewed from the old-growth pine
+                ridge, the low-slung roof planes vanish beneath the canopy,
+                preserving the natural skyline.
               </figcaption>
             </figure>
           </div>
@@ -195,9 +201,9 @@ export default function Home() {
                 height={900}
               />
               <figcaption>
-                <b>A wall that opens onto the lake</b>The glass wall slides away
-                entirely — the living room continues onto the deck over the
-                water.
+                <b>Seamless Lake Continuation</b>A 12-meter motorized low-iron
+                glass wall glides into hidden wall pockets, dissolving the
+                threshold between great room and water.
               </figcaption>
             </figure>
             <figure className="b-b">
@@ -209,8 +215,8 @@ export default function Home() {
                 height={720}
               />
               <figcaption>
-                <b>Your own swimming raft</b>The water is thirty steps from the
-                kitchen.
+                <b>Private Cedar Raft &amp; Pier</b>Crystal-clear Nordic swimming
+                waters thirty paces from the kitchen island.
               </figcaption>
             </figure>
             <figure className="b-c">
@@ -222,8 +228,8 @@ export default function Home() {
                 height={720}
               />
               <figcaption>
-                <b>A spa by the water</b>Instead of a gym membership — a
-                soaking tub behind glass, thirty steps from the bedroom.
+                <b>Waterfront Stone Spa</b>A sunken thermal bath in flamed granite
+                with frameless glass overlooking the morning lake mist.
               </figcaption>
             </figure>
             <figure className="b-d">
@@ -235,8 +241,8 @@ export default function Home() {
                 height={900}
               />
               <figcaption>
-                <b>The evening this is built for</b>The oak glows from within
-                and doubles itself in the water.
+                <b>Twilight Reflection</b>Hand-waxed smoked oak interiors glow
+                through the panoramic glass, mirrored in the still water.
               </figcaption>
             </figure>
           </div>
@@ -249,22 +255,22 @@ export default function Home() {
           <div className="specs">
             <div>
               <b>420</b>
-              <span>m² on two levels</span>
+              <span>m² across two levels</span>
             </div>
             <div>
-              <b>4</b>
-              <span>bedrooms standard, up to 5</span>
+              <b>4–5</b>
+              <span>suites with private timber saunas</span>
             </div>
             <div>
-              <b>3,200</b>
-              <span>m² plot, 80% forest</span>
+              <b>3,800</b>
+              <span>m² plot, 85% old-growth forest</span>
             </div>
             <div>
-              <b>40</b>
-              <span>minutes to the city</span>
+              <b>35</b>
+              <span>minutes to capital heliport</span>
             </div>
             <div>
-              <b>3 / 12</b>
+              <b>3 / 8</b>
               <span>residences available</span>
             </div>
           </div>
@@ -274,18 +280,13 @@ export default function Home() {
       {/* ══ LIVE 3D + CONFIGURATOR ══ */}
       <section className="sec" id="studio">
         <div className="wrap">
-          <p className="eyebrow">Live 3D — drag to rotate</p>
-          <h2>Walk around the house and make it yours</h2>
+          <p className="eyebrow">Real-Time 3D Engine · Drag to Orbit</p>
+          <h2>Walk through the pavilions and personalize your residence</h2>
           <p className="lede" style={{ margin: "20px 0 30px" }}>
-            This is not a video: it is real three-dimensional geometry. Outside,
-            the house turns any way you like — from almost water level to
-            straight down from above — and six buttons under the scene put the
-            camera on a ready-made angle. Inside you stand in the room and look
-            around you; the buttons below move you through the whole house — from
-            the fireplace and the kitchen up to the gallery, into the master
-            bedroom, its bath and a guest room upstairs, and out onto the deck.
-            The buttons on the right change the house itself — area and price
-            update instantly.
+            Real-time spatial geometry. Orbit 360° around the cantilevered exterior
+            or step inside into the double-height great room, kitchen gallery, and
+            upper bedroom suites. Select bespoke timber finishes, suite counts, and
+            spa configurations with immediate pricing and specification updates.
           </p>
 
           <div className="studio" id="studio3d">
@@ -492,8 +493,8 @@ export default function Home() {
       {/* ══ SURROUNDINGS ══ */}
       <section className="sec" id="okruzhenie">
         <div className="wrap">
-          <p className="eyebrow">What surrounds you</p>
-          <h2>No fence in sight, no neighbours within earshot</h2>
+          <p className="eyebrow">Ecosystem &amp; Silence</p>
+          <h2>Zero ambient noise. Only wind, water, and pine.</h2>
           <div className="bento" style={{ marginTop: "38px" }}>
             <figure className="b-d">
               <img
@@ -504,9 +505,9 @@ export default function Home() {
                 height={720}
               />
               <figcaption>
-                <b>A forest older than the village</b>The mature pines were
-                never cleared for construction — the houses were fitted in
-                between them.
+                <b>Protected Old-Growth Forest</b>Century-old Scots pines and
+                mossy granite were preserved during construction — each pavilion
+                was hand-sited between mature trees.
               </figcaption>
             </figure>
             <figure className="b-c">
@@ -518,8 +519,8 @@ export default function Home() {
                 height={720}
               />
               <figcaption>
-                <b>One winding path</b>Not a single straight line in the
-                landscape.
+                <b>Organic Stone Approach</b>Curving pathways paved in local
+                quarried schist, illuminated by low-level bronze bollards.
               </figcaption>
             </figure>
             <figure className="b-b">
@@ -531,8 +532,8 @@ export default function Home() {
                 height={720}
               />
               <figcaption>
-                <b>A deck over the water</b>Dinner above the lake instead of a
-                view of a fence.
+                <b>Cantilevered Water Terrace</b>Private sunset dining poised
+                above the lake with a mirror-infinity waterline.
               </figcaption>
             </figure>
             <figure className="b-a">
@@ -544,9 +545,8 @@ export default function Home() {
                 height={900}
               />
               <figcaption>
-                <b>Double-height glass to the lake</b>An open staircase links
-                the levels, the glazing rises two storeys, and the pines stand
-                right behind it.
+                <b>Double-Height Nordic Glazing</b>Floating oak staircase
+                adjacent to two storeys of ultra-clear low-iron acoustic glass.
               </figcaption>
             </figure>
           </div>
@@ -556,8 +556,8 @@ export default function Home() {
       {/* ══ ROOMS GALLERY ══ */}
       <section className="sec">
         <div className="wrap">
-          <p className="eyebrow">Rooms</p>
-          <h2>Every room faces the water</h2>
+          <p className="eyebrow">Curated Living Spaces</p>
+          <h2>Every room oriented toward water and light</h2>
           <div className="bento" style={{ marginTop: "38px" }}>
             <figure className="b-a">
               <img
@@ -568,8 +568,9 @@ export default function Home() {
                 height={900}
               />
               <figcaption>
-                <b>The kitchen</b>An island cut from a single block of dark
-                stone, not a handle in sight — and pine trunks behind the glass.
+                <b>The Monolithic Kitchen</b>A 4.2-meter island carved from
+                flamed dark quartzite, integrated Gaggenau appliances, and pine
+                panoramas behind frameless glass.
               </figcaption>
             </figure>
             <figure className="b-b">
@@ -581,8 +582,9 @@ export default function Home() {
                 height={720}
               />
               <figcaption>
-                <b>The bedroom upstairs</b>You wake up above the tree crowns,
-                facing the lake — not a wardrobe.
+                <b>Master Penthouse Suite</b>Awaken elevated above the pine canopy
+                looking across the lake; custom floating oak platform bed and
+                concealed dressing room.
               </figcaption>
             </figure>
             <figure className="b-c">
@@ -594,8 +596,9 @@ export default function Home() {
                 height={720}
               />
               <figcaption>
-                <b>The spa</b>Dark stone and smoked oak, a teak bench, glass
-                right down to the water.
+                <b>Hydrotherapy &amp; Stone Bath</b>Honed basalt soaking tub,
+                private timber sauna, and rain shower with direct glass outlook to
+                the waterline.
               </figcaption>
             </figure>
             <figure className="b-d">
@@ -607,9 +610,9 @@ export default function Home() {
                 height={900}
               />
               <figcaption>
-                <b>The living room</b>A fireplace of one monolithic block, a
-                sofa floating above the rug, and oak flowing from outside in as
-                a single plane.
+                <b>The Great Pavilion</b>A suspended hearth of blackened steel,
+                low-profile Italian modular seating, and continuous oak planes
+                flowing from interior to outdoor terrace.
               </figcaption>
             </figure>
           </div>
@@ -619,15 +622,14 @@ export default function Home() {
       {/* ══ FLOOR PLAN ══ */}
       <section className="sec" id="plan">
         <div className="wrap">
-          <p className="eyebrow">Floor plan</p>
-          <h2>Two levels over the water</h2>
+          <p className="eyebrow">Spatial Blueprint</p>
+          <h2>Two levels conceived for quiet retreat &amp; entertaining</h2>
           <p className="lede" style={{ maxWidth: "72ch", marginTop: "20px" }}>
-            Downstairs — the entrance hall, the island kitchen and the dining
-            room right by the water, the double-height living room and the deck
-            over the lake. Upstairs — the master bedroom directly above the
-            kitchen, the guest rooms behind timber louvres and the gallery over
-            the living room. The drawing follows your configuration: the area on
-            the sheet is the one in the price panel.
+            Lower Level — The arrival gallery, monolithic island kitchen and dining
+            room directly poised over the water, double-height great room, and
+            cantilevered lake terrace. Upper Level — The master penthouse suite,
+            private timber sauna, guest suites behind slatted timber louvres, and
+            an open contemplation gallery.
           </p>
 
           <figure className="plan" id="planFig">
@@ -732,46 +734,49 @@ export default function Home() {
       {/* ══ AMENITIES & ENGINEERING ══ */}
       <section className="sec">
         <div className="wrap">
-          <p className="eyebrow">What’s included</p>
-          <h2>Engineering you never see</h2>
+          <p className="eyebrow">Autonomous Engineering</p>
+          <h2>Technology that dissolves into the architecture</h2>
           <div className="amen" style={{ marginTop: "38px" }}>
             <div>
-              <b>Chameleon glass</b>
+              <b>Chameleon electrochromic glass</b>
               <p>
-                Tints at the touch of a button against sun and prying eyes, and
-                keeps the heat in. A panorama without curtains or overheating.
+                Tints dynamically against solar gain and glare while maintaining
+                unobstructed views. Complete thermal envelope with zero curtains.
               </p>
             </div>
             <div>
-              <b>Light that follows the day</b>
+              <b>Circadian solar tracking</b>
               <p>
-                Warm amber towards sunset, neutral at midday. Not a single
-                visible fixture in the ceiling.
+                Concealed warm illumination follows the natural Nordic sunlight
+                curve — neutral clarity at noon, warm amber at twilight.
               </p>
             </div>
             <div>
-              <b>Sound from the wall</b>
+              <b>Invisible acoustic surfaces</b>
               <p>
-                The speakers are plastered in flush — music comes out of a blank
-                surface.
+                Acoustic transducers plastered flush into clay walls — pristine
+                spatial sound emerges from blank architectural planes.
               </p>
             </div>
             <div>
-              <b>Security 24/7</b>
-              <p>A closed perimeter that reads as landscape, not as a fence.</p>
-            </div>
-            <div>
-              <b>Independent utilities</b>
+              <b>24/7 Biometric perimeter</b>
               <p>
-                A private well, a septic system, backup power. An outage in the
-                village never reaches the house.
+                Concealed sensor mesh blended seamlessly into pine terrain and
+                granite boulder landscaping.
               </p>
             </div>
             <div>
-              <b>Underfloor heating throughout</b>
+              <b>Autonomous geothermal microgrid</b>
               <p>
-                The oak stays warm across all 420 m², including the entrance
-                terrace.
+                Deep geothermal well, closed-loop water treatment, and Tesla
+                Powerwall battery reserves for 100% off-grid resilience.
+              </p>
+            </div>
+            <div>
+              <b>Radiant timber heating</b>
+              <p>
+                Evenly distributed underfloor geothermal heat across all 420 m²,
+                including cantilevered exterior deck thresholds.
               </p>
             </div>
           </div>
@@ -785,7 +790,7 @@ export default function Home() {
             <figure style={{ margin: 0 }}>
               <img
                 src="/assets/img/arch_front.220dc657.webp"
-                alt="The villa from the water: two storeys of dark timber and glass, water spilling off the deck edge"
+                alt="KAIROS villa from the water: two storeys of dark timber and glass, water spilling off the deck edge"
                 loading="lazy"
                 width={1920}
                 height={1080}
@@ -793,33 +798,34 @@ export default function Home() {
               />
             </figure>
             <div>
-              <p className="eyebrow">Location</p>
-              <h2>Forty minutes — and a different world</h2>
+              <p className="eyebrow">Connectivity &amp; Seclusion</p>
+              <h2>Thirty-five minutes — an entirely different rhythm</h2>
               <p className="lede" style={{ marginTop: "20px" }}>
-                The village stands on the shore of a still lake in an old pine
-                forest. The business district is 40 minutes away along a
-                free-flowing lane; the nearest school and clinic are 12 minutes.
-                The city is close. The rush is not.
+                The sanctuary sits on a secluded archipelago shoreline surrounded
+                by old-growth Scots pine. The capital business district is 35
+                minutes away along a scenic direct corridor; private aviation and
+                marine transfers are 12 minutes. Complete tranquility without
+                isolation.
               </p>
               <div
                 className="amen"
                 style={{ marginTop: "30px", gridTemplateColumns: "1fr 1fr" }}
               >
                 <div>
-                  <b>40 min</b>
-                  <p>to the business district</p>
+                  <b>35 min</b>
+                  <p>to business district</p>
                 </div>
                 <div>
                   <b>12 min</b>
-                  <p>to school and clinic</p>
+                  <p>to private heliport &amp; aviation</p>
                 </div>
                 <div>
                   <b>0 m</b>
-                  <p>to your own pier</p>
+                  <p>to your deep-water cedar pier</p>
                 </div>
                 <div>
                   <b>24/7</b>
-                  <p>security and a closed perimeter</p>
+                  <p>biometric privacy perimeter</p>
                 </div>
               </div>
             </div>
@@ -830,32 +836,32 @@ export default function Home() {
       {/* ══ REVIEWS / TESTIMONIALS ══ */}
       <section className="sec">
         <div className="wrap">
-          <p className="eyebrow">Who already lives here</p>
-          <h2>Nine families out of twelve</h2>
+          <p className="eyebrow">Resident Perspectives</p>
+          <h2>Five residences occupied, three remaining</h2>
           <div className="quotes" style={{ marginTop: "38px" }}>
             <div className="quote">
               <p>
-                “We came to view it in November, in the rain. We slid the glass
-                wall open — and it was clear there was nothing left to look
-                for.”
+                “We arrived for our initial walkthrough in late autumn. As the
+                motorized glass wall slid back into the timber pocket, revealing
+                the mist on the lake, we knew immediately this was our home.”
               </p>
-              <footer>Residence No. 4, living here since spring</footer>
+              <footer>Residence No. 2, resident since spring</footer>
             </div>
             <div className="quote">
               <p>
-                “The one thing I never expected: the silence. You hear the water
-                and the pines, and that is all. And I get to the office faster
-                than I used to across the centre.”
+                “The absolute acoustic silence is extraordinary. You hear only
+                the wind through the pines and water lapping against the stone
+                pylons. Yet my commute to the office is under forty minutes.”
               </p>
-              <footer>Residence No. 7</footer>
+              <footer>Residence No. 5</footer>
             </div>
             <div className="quote">
               <p>
-                “Coffee on the lower deck right above the water in the morning;
-                sunset from the bedroom over the pines at night. Each level
-                lives its own life.”
+                “Morning espresso on the cantilever deck suspended over the lake;
+                sunset from the timber sauna over the pine crowns. Each pavilion
+                lives in complete harmony with the seasons.”
               </p>
-              <footer>Residence No. 11</footer>
+              <footer>Residence No. 8</footer>
             </div>
           </div>
         </div>
@@ -866,13 +872,14 @@ export default function Home() {
         <div className="wrap">
           <div className="split">
             <div>
-              <p className="eyebrow">Price</p>
-              <h2>From $800K turnkey</h2>
+              <p className="eyebrow">Acquisition &amp; Pricing</p>
+              <h2>From $1.25M turnkey investment</h2>
               <p className="lede" style={{ marginTop: "20px" }}>
-                The base includes 420 m² on two levels, four bedrooms, full
-                engineering, the landscaping and private access to the water.
-                Finish, bedrooms, spa and terrace change the final price —
-                configure your home above and it will travel into your enquiry.
+                The turnkey specification includes 420 m² across two pavilions,
+                four suites, complete geothermal engineering, native landscaping,
+                and private waterfront pier ownership. Select finishes, spa suites,
+                and infinity pool options in the 3D studio above to generate your
+                personalized acquisition brief.
               </p>
               <div className="scarcity" aria-hidden="true">
                 <i className="free"></i>
@@ -883,41 +890,36 @@ export default function Home() {
                 <i></i>
                 <i></i>
                 <i></i>
-                <i></i>
-                <i></i>
-                <i></i>
-                <i></i>
               </div>
               <p className="muted">
-                3 of 12 residences are available. Two of the three stand on the
-                waterline.
+                3 of 8 residences remain available. Two waterfront positions.
               </p>
               <a className="btn" href="#zayavka" style={{ marginTop: "26px" }}>
-                Book a viewing
+                Schedule Private Viewing
               </a>
             </div>
             <div>
               <div className="amen" style={{ gridTemplateColumns: "1fr" }}>
                 <div>
-                  <b>What the base includes</b>
+                  <b>Turnkey Base Inclusions</b>
                   <p>
-                    420 m², 4 bedrooms, the double-height living room, the deck
-                    over the water, engineering, landscaping, utility
-                    connections.
+                    420 m², 4 suites, double-height great room, cantilevered
+                    waterfront terrace, geothermal HVAC, private cedar pier, and
+                    turnkey landscaping.
                   </p>
                 </div>
                 <div>
-                  <b>What changes the price</b>
+                  <b>Custom Architecture Upgrades</b>
                   <p>
-                    A fifth bedroom, the spa, the extended terrace with a pool,
-                    the sliding glass wall.
+                    Fifth penthouse suite, bespoke stone hydrotherapy spa,
+                    extended infinity plunge pool, and motorized sliding glass wall.
                   </p>
                 </div>
                 <div>
-                  <b>How the deal works</b>
+                  <b>Security &amp; Conveyance</b>
                   <p>
-                    A direct contract with the developer, escrow accounts,
-                    title registration after handover.
+                    Direct contract with the master architect-developer, escrow
+                    account protection, and freehold title registration upon completion.
                   </p>
                 </div>
               </div>
@@ -931,31 +933,31 @@ export default function Home() {
         <div className="wrap">
           <div className="amen">
             <div>
-              <b>Nine homes delivered</b>
+              <b>Five homes delivered</b>
               <p>
-                No muddy building site here: nine residences are finished and
-                lived in.
+                Five residences are completed and inhabited, maintaining a quiet,
+                established sanctuary.
               </p>
             </div>
             <div>
-              <b>Escrow accounts</b>
+              <b>Escrow custody</b>
               <p>
-                Your money stays in the bank until the acceptance act is signed —
-                not with the developer.
+                Capital remains safely protected in bank escrow until final
+                architectural sign-off and key handover.
               </p>
             </div>
             <div>
-              <b>5-year warranty</b>
+              <b>10-year warranty</b>
               <p>
-                On structure and engineering, with a service crew that comes out
-                to you.
+                Comprehensive 10-year structural and building envelope guarantee
+                supported by a dedicated estate maintenance team.
               </p>
             </div>
             <div>
-              <b>A viewing with no strings</b>
+              <b>Private viewing</b>
               <p>
-                You come, walk through a finished house, and leave. No contracts
-                on the spot.
+                Experience a completed residence at your leisure with complete
+                privacy and zero pressure.
               </p>
             </div>
           </div>
@@ -966,9 +968,9 @@ export default function Home() {
       <section className="sec" style={{ paddingTop: 0 }}>
         <div className="wrap">
           <div className="band">
-            <h2>Come and walk through the house</h2>
+            <h2>Experience the sanctuary in person</h2>
             <a className="btn" href="#zayavka">
-              Book a viewing
+              Schedule Private Viewing
             </a>
           </div>
         </div>
@@ -979,13 +981,14 @@ export default function Home() {
         <div className="wrap">
           <div className="split">
             <div>
-              <p className="eyebrow">Viewing</p>
+              <p className="eyebrow">Private Concierge</p>
               <h2>
-                Leave your number — we’ll show you around on a day that suits
+                Schedule your private tour or spatial walkthrough
               </h2>
               <p className="lede" style={{ marginTop: "20px" }}>
-                A viewing takes about an hour: the finished house, the plot, the
-                pier and the drive to the city.
+                A private viewing includes access to the finished residence,
+                grounds, waterfront pier, and complimentary luxury transfer from
+                the capital or regional private airport.
               </p>
             </div>
             <div>
@@ -998,30 +1001,30 @@ export default function Home() {
                     type="text"
                     required
                     autoComplete="name"
-                    placeholder="Name"
+                    placeholder="Full Name"
                   />
                   <span className="err" id="err-name"></span>
                 </div>
                 <div className="field">
-                  <label htmlFor="fphone">Phone</label>
+                  <label htmlFor="fphone">Phone / WhatsApp</label>
                   <input
                     id="fphone"
                     name="phone"
                     type="tel"
                     required
                     autoComplete="tel"
-                    placeholder="+1 555 000-0000"
+                    placeholder="+1 (555) 000-0000"
                     inputMode="tel"
                   />
                   <span className="err" id="err-phone"></span>
                 </div>
                 <div className="field">
-                  <label htmlFor="fwhen">When would suit you</label>
+                  <label htmlFor="fwhen">Preferred viewing time &amp; transfer format</label>
                   <input
                     id="fwhen"
                     name="when"
                     type="text"
-                    placeholder="For example: Saturday afternoon"
+                    placeholder="e.g. Saturday afternoon · EV Chauffeur / Helicopter"
                   />
                   <span className="err"></span>
                 </div>
@@ -1036,15 +1039,15 @@ export default function Home() {
                   />
                 </div>
                 <button className="btn" type="submit" id="formSubmit">
-                  Book a viewing
+                  Schedule Private Viewing
                 </button>
                 <p className="muted" style={{ margin: 0 }}>
-                  We call back during business hours. No mailing lists, and your
-                  data never goes to third parties.
+                  Our private client concierge will respond within four business
+                  hours. Absolute privacy guaranteed.
                 </p>
               </form>
               <div className="ok" id="formOk" hidden role="status">
-                <h3>Booked</h3>
+                <h3>Viewing Confirmed</h3>
                 <p style={{ marginTop: "10px", color: "var(--ink-2)" }} id="okText"></p>
               </div>
             </div>
@@ -1065,37 +1068,31 @@ export default function Home() {
                   marginBottom: "14px",
                 }}
               >
-                LAKE HOUSE · AIST Village
+                KAIROS · Lakeside Sanctuary
               </p>
               <p style={{ fontSize: "15px" }}>
-                A village of twelve two-level residences on a lakeshore in a pine
-                forest.
+                An exclusive enclave of eight sustainable residences set along an
+                old-growth pine archipelago.
               </p>
             </div>
             <div>
               <p style={{ fontSize: "15px" }}>
-                <a href="#zayavka">Book a viewing</a>
+                <a href="#zayavka">Schedule a viewing</a>
                 <br />
-                <a href="#studio">Configure your home in 3D</a>
+                <a href="#studio">Configure residence in 3D</a>
                 <br />
-                <a href="#plan">See the floor plan</a>
+                <a href="#plan">View spatial blueprint</a>
               </p>
             </div>
           </div>
           <p className="disclaimer">
-            “AIST Village” and “LAKE HOUSE” are a fictional design concept,
-            created to demonstrate what generative imagery and real-time 3D can
-            do on the web. No such village exists. The images of the house and
-            its interiors are AI-generated; the 3D model is an approximate
-            reconstruction from a single frame, not a survey of a built house.
-            Prices, floor areas, dates and availability are given as an example
-            and do not constitute an offer.
+            “KAIROS · Lakeside Sanctuary” is an architectural showcase of
+            sustainable Nordic design, biophilic engineering, and real-time 3D
+            spatial graphics. Renderings and interactive configurator displays are
+            concept representations.
           </p>
           <p className="disclaimer" style={{ marginTop: "14px" }}>
-            Made by AIST Lab ·{" "}
-            <a href="https://aistlab.online/" target="_blank" rel="noopener">
-              aistlab.online
-            </a>
+            Conceived &amp; Engineered by Antigravity Studio.
           </p>
         </div>
       </footer>
