@@ -5,6 +5,8 @@ import VicinityRadarMap from "@/components/map/VicinityRadarMap";
 import FloorplanDollhouse from "@/components/floorplan/FloorplanDollhouse";
 import CarbonEnergyTracker from "@/components/sustainability/CarbonEnergyTracker";
 import VipConciergeBooking from "@/components/concierge/VipConciergeBooking";
+import ArchitecturalLogo from "@/components/brand/ArchitecturalLogo";
+import VillaTypologySelector from "@/components/showcase/VillaTypologySelector";
 
 export default function Home() {
   return (
@@ -13,14 +15,17 @@ export default function Home() {
         Skip to the enquiry form
       </a>
 
-      {/* Floating Liquid-Glass Navigation Bar */}
+      {/* Floating Liquid-Glass Navigation Bar with Futuristic Architectural Logo */}
       <nav className="nav" aria-label="Primary">
         <div className="nav__in">
-          <span className="nav__brand">
-            KAIROS <span>· Lakeside Sanctuary</span>
-          </span>
+          <a href="#hero" className="nav__brand" style={{ textDecoration: "none" }}>
+            <ArchitecturalLogo size={26} />
+            <span>KAIROS</span>
+            <span className="nav__brand-sub">· Sanctuary</span>
+          </a>
           <div className="nav__links">
             <a href="#hero">Sanctuary</a>
+            <a href="#typologies">Typologies</a>
             <a href="#studio">3D Pavilion</a>
             <a href="#sustainability">Ecology</a>
             <a href="#radar">Vicinity</a>
@@ -41,8 +46,8 @@ export default function Home() {
           <img
             className="hero__poster"
             id="heroPoster"
-            src="/assets/hero/poster.jpg"
-            alt="A two-level villa of dark timber and glass on the shore of a mirror-still lake in a pine forest at sunset"
+            src="/assets/img/futuristic_villa_hero.webp"
+            alt="Futuristic luxury cantilevered villa of glass and blackened titanium hovering over a mirror Nordic lake at golden dusk"
             fetchPriority="high"
             decoding="async"
           />
@@ -67,23 +72,23 @@ export default function Home() {
                 Nordic Archipelago · Old-Growth Pine Sanctuary · 8 Residences
               </p>
               <h1>
-                Architecture carved
+                Radical architecture
                 <br />
-                from silence &amp; light
+                suspended over the water
               </h1>
               <div className="hero__row">
                 <div className="hero__facts">
                   <div>
-                    <b>from $1.25M</b>turnkey Nordic CLT
+                    <b>from $1.25M</b>Turnkey Modern Villa
                   </div>
                   <div>
-                    <b>420 m²</b>dual cantilever pavilions
+                    <b>480 m²</b>18.4m Cantilever
                   </div>
                   <div>
-                    <b>4–5 suites</b>with private timber sauna
+                    <b>4–5 suites</b>Hydrotherapy &amp; Sauna
                   </div>
                   <div>
-                    <b>35 minutes</b>to capital heliport &amp; port
+                    <b>35 minutes</b>Capital Heliport
                   </div>
                 </div>
                 <a className="btn" href="#zayavka">
@@ -285,6 +290,13 @@ export default function Home() {
               <span>residences available</span>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* ══ CONTEMPORARY VILLA TYPOLOGIES ══ */}
+      <section className="sec" id="typologies" style={{ paddingBottom: 0 }}>
+        <div className="wrap">
+          <VillaTypologySelector />
         </div>
       </section>
 
@@ -621,16 +633,16 @@ export default function Home() {
             </figure>
             <figure className="b-d">
               <img
-                src="/assets/img/int_living.1dc7ddf2.webp"
-                alt="The living room with a monolithic fireplace and a low modular sofa"
+                src="/assets/img/futuristic_villa_interior.webp"
+                alt="The Great Pavilion living room with a suspended blackened hearth and floor-to-ceiling glass over the lake"
                 loading="lazy"
                 width={1600}
                 height={900}
               />
               <figcaption>
                 <b>The Great Pavilion</b>A suspended hearth of blackened steel,
-                low-profile Italian modular seating, and continuous oak planes
-                flowing from interior to outdoor terrace.
+                low-profile Italian modular seating in cream bouclé, and smoked oak
+                acoustic planes framing the misty lake.
               </figcaption>
             </figure>
           </div>
@@ -1036,16 +1048,19 @@ export default function Home() {
         <div className="wrap">
           <div className="split" style={{ alignItems: "start" }}>
             <div>
-              <p
-                style={{
-                  font: "700 20px/1.2 var(--d)",
-                  letterSpacing: "-.01em",
-                  color: "#f2efe9",
-                  marginBottom: "14px",
-                }}
-              >
-                KAIROS · Lakeside Sanctuary
-              </p>
+              <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "14px" }}>
+                <ArchitecturalLogo size={32} />
+                <p
+                  style={{
+                    font: "700 20px/1.2 var(--d)",
+                    letterSpacing: "-.01em",
+                    color: "#f2efe9",
+                    margin: 0,
+                  }}
+                >
+                  KAIROS · Lakeside Sanctuary
+                </p>
+              </div>
               <p style={{ fontSize: "15px" }}>
                 An exclusive enclave of eight sustainable residences set along an
                 old-growth pine archipelago.

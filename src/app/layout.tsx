@@ -5,12 +5,12 @@ import "./globals.css";
 import "./site.css";
 
 export const metadata: Metadata = {
-  title: "KAIROS · Lakeside Sanctuary — Sustainable Nordic Architecture & Private Residences",
+  title: "KAIROS · Lakeside Sanctuary — Futuristic Architecture & Contemporary Residences",
   description:
-    "An exclusive enclave of eight sustainable lakeside residences in an old-growth pine archipelago. 420 m² dual cantilever pavilions from $1.25M. Net-zero geothermal living.",
+    "An exclusive enclave of eight sustainable residences featuring radical cantilevered glass architecture in an old-growth pine archipelago. 480 m² AERO pavilions from $1.25M. Net-zero geothermal living.",
   icons: {
     icon: [
-      { url: "/assets/favicon.svg?v=3", type: "image/svg+xml" },
+      { url: "/assets/favicon.svg?v=4", type: "image/svg+xml" },
       { url: "/assets/favicon-32.png?v=3", sizes: "32x32", type: "image/png" },
       { url: "/assets/favicon-16.png?v=3", sizes: "16x16", type: "image/png" },
     ],
