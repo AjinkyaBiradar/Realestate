@@ -753,3 +753,105 @@ footer.site a{color:var(--accent-dark)}
      (722px героя при окне 820px), target навсегда оставался 0, и облёта не было
      вообще. Убираем инерцию сглаживания в site.js, а не сам облёт. */
 }
+
+/* ══════════════ PHASE 2: INTERACTIVE FEATURES ══════════════ */
+
+/* 1. Spatial Ambient Audio Toggle */
+.sound-toggle{display:inline-flex;align-items:center;gap:7px;background:rgba(29,28,25,.06);border:1px solid rgba(29,28,25,.08);padding:5px 12px;border-radius:999px;cursor:pointer;color:var(--ink-2);font:500 11.5px/1 var(--b);transition:all .2s ease;margin-left:8px}
+.sound-toggle:hover{background:rgba(29,28,25,.12);color:var(--ink)}
+.sound-toggle__bars{display:flex;align-items:flex-end;gap:2px;height:12px;width:12px}
+.sound-bar{width:2px;height:4px;background:var(--ink);border-radius:1px;transition:height .2s ease}
+.sound-bar--animated{animation:soundWave .85s ease-in-out infinite alternate}
+@keyframes soundWave{0%{height:3px}50%{height:12px}100%{height:5px}}
+
+/* 2. Solar Light Study Controller & Atmospheric Lighting */
+.sun-study{position:absolute;bottom:28px;right:clamp(16px,4vw,48px);z-index:25;display:flex;flex-direction:column;align-items:flex-end;gap:8px;pointer-events:auto}
+.sun-study__bar{display:flex;align-items:center;gap:12px;background:rgba(18,20,26,.72);backdrop-filter:blur(20px) saturate(1.8);-webkit-backdrop-filter:blur(20px) saturate(1.8);border:1px solid rgba(255,255,255,.16);padding:6px 8px 6px 14px;border-radius:999px;box-shadow:0 8px 32px rgba(0,0,0,.35)}
+.sun-study__header{display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(255,255,255,.85);font-family:var(--b)}
+.sun-study__indicator{width:6px;height:6px;border-radius:50%;background:#f59e0b;box-shadow:0 0 8px #f59e0b}
+.sun-study__title{font-weight:600;letter-spacing:.02em;color:#fff}
+.sun-study__time{font-family:var(--d);font-weight:700;color:#f59e0b;margin-right:4px}
+.sun-study__expand-btn{appearance:none;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.75);font-size:10.5px;padding:3px 8px;border-radius:999px;cursor:pointer;transition:all .2s ease}
+.sun-study__expand-btn:hover{background:rgba(255,255,255,.2);color:#fff}
+.sun-study__tabs{display:flex;align-items:center;gap:4px;background:rgba(0,0,0,.3);padding:3px;border-radius:999px}
+.sun-study__tab{appearance:none;border:0;background:transparent;color:rgba(255,255,255,.7);font:500 11px/1 var(--b);padding:5px 10px;border-radius:999px;cursor:pointer;transition:all .2s ease}
+.sun-study__tab:hover{color:#fff}
+.sun-study__tab--active{background:rgba(255,255,255,.2);color:#fff;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+.sun-study__telemetry{background:rgba(18,20,26,.82);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.14);padding:14px 18px;border-radius:18px;width:320px;box-shadow:0 12px 36px rgba(0,0,0,.4);animation:fadeIn .25s ease}
+.sun-study__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:10px;border-bottom:1px solid rgba(255,255,255,.1);padding-bottom:10px}
+.sun-study__label{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.5);margin-bottom:2px}
+.sun-study__val{display:block;font-size:12px;font-weight:700;color:#f59e0b;font-family:var(--d)}
+.sun-study__desc{font-size:11.5px;color:rgba(255,255,255,.78);line-height:1.4;margin:0}
+
+/* Atmospheric Lighting Modifiers for Hero */
+#hero[data-solar-phase="dawn"] .hero__canvas,
+#hero[data-solar-phase="dawn"] .hero__poster{
+  filter:sepia(.2) hue-rotate(-20deg) brightness(.92) contrast(1.05) saturate(1.15);
+  transition:filter .8s cubic-bezier(.22,1,.36,1);
+}
+#hero[data-solar-phase="midday"] .hero__canvas,
+#hero[data-solar-phase="midday"] .hero__poster{
+  filter:brightness(1.04) contrast(1.02) saturate(1.05);
+  transition:filter .8s cubic-bezier(.22,1,.36,1);
+}
+#hero[data-solar-phase="golden"] .hero__canvas,
+#hero[data-solar-phase="golden"] .hero__poster{
+  filter:sepia(.25) saturate(1.25) hue-rotate(-10deg) brightness(1.02) contrast(1.06);
+  transition:filter .8s cubic-bezier(.22,1,.36,1);
+}
+#hero[data-solar-phase="night"] .hero__canvas,
+#hero[data-solar-phase="night"] .hero__poster{
+  filter:brightness(.58) contrast(1.22) saturate(.85) hue-rotate(185deg);
+  transition:filter .8s cubic-bezier(.22,1,.36,1);
+}
+@media(max-width:768px){
+  .sun-study{bottom:14px;right:14px;left:14px;align-items:stretch}
+  .sun-study__bar{justify-content:space-between;flex-wrap:wrap}
+  .sun-study__telemetry{width:100%}
+}
+
+/* 3. Interactive Vicinity Radar Map */
+.radar-map{display:flex;flex-direction:column;gap:20px;background:var(--paper-2);border:1px solid var(--line);border-radius:var(--r);padding:clamp(18px,3vw,32px);box-shadow:0 8px 30px rgba(0,0,0,.04);margin-top:28px}
+.radar-map__filters{display:flex;flex-wrap:wrap;gap:8px}
+.radar-filter{appearance:none;border:1px solid var(--line);background:var(--card);color:var(--ink-2);font:500 12px/1 var(--b);padding:7px 14px;border-radius:999px;cursor:pointer;transition:all .2s ease}
+.radar-filter:hover{color:var(--ink);border-color:var(--ink-3)}
+.radar-filter--active{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.radar-map__body{display:grid;grid-template-columns:1.35fr 1fr;gap:24px;align-items:center}
+.radar-viewport{position:relative;width:100%;aspect-ratio:1/1;max-height:480px;background:radial-gradient(circle at center,#161a22 0%,#0c0e12 100%);border-radius:var(--r);overflow:hidden;border:1px solid rgba(255,255,255,.1)}
+.radar-svg{position:absolute;inset:0;width:100%;height:100%}
+.radar-ring{fill:none;stroke:rgba(255,255,255,.12);stroke-width:.6;stroke-dasharray:1.5 2}
+.radar-axis{stroke:rgba(255,255,255,.08);stroke-width:.5}
+.radar-sweep{stroke:rgba(245,158,11,.45);stroke-width:.8;transform-origin:50px 50px;animation:radarSweep 6s linear infinite}
+@keyframes radarSweep{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.radar-label{fill:rgba(255,255,255,.35);font-size:3px;font-family:monospace;letter-spacing:.05em}
+
+/* Radar Center & Hotspot Pins */
+.radar-origin{position:absolute;transform:translate(-50%,-50%);z-index:10;pointer-events:none;display:flex;flex-direction:column;align-items:center}
+.radar-origin__dot{width:10px;height:10px;border-radius:50%;background:#f59e0b;border:2px solid #fff;box-shadow:0 0 12px #f59e0b}
+.radar-origin__ping{position:absolute;top:-5px;left:-5px;width:20px;height:20px;border-radius:50%;border:1.5px solid #f59e0b;animation:ping 2s cubic-bezier(0,0,.2,1) infinite}
+@keyframes ping{75%,100%{transform:scale(2.5);opacity:0}}
+.radar-origin__tag{font-size:10px;font-weight:700;letter-spacing:.04em;color:#f59e0b;background:rgba(0,0,0,.7);padding:2px 6px;border-radius:4px;margin-top:4px;white-space:nowrap}
+
+.radar-pin{position:absolute;transform:translate(-50%,-50%);appearance:none;border:0;background:transparent;cursor:pointer;z-index:8;display:flex;flex-direction:column;align-items:center;padding:4px}
+.radar-pin__core{width:8px;height:8px;border-radius:50%;background:#60a5fa;border:1.5px solid #fff;transition:transform .2s ease,background .2s ease}
+.radar-pin__beacon{position:absolute;top:2px;left:2px;width:8px;height:8px;border-radius:50%;border:1px solid #60a5fa;opacity:0}
+.radar-pin:hover .radar-pin__core,
+.radar-pin--selected .radar-pin__core{transform:scale(1.5);background:#f59e0b}
+.radar-pin:hover .radar-pin__beacon,
+.radar-pin--selected .radar-pin__beacon{animation:ping 1.5s cubic-bezier(0,0,.2,1) infinite;border-color:#f59e0b}
+.radar-pin__title{display:none;font-size:9.5px;color:rgba(255,255,255,.9);background:rgba(12,14,18,.85);padding:2px 6px;border-radius:4px;margin-top:4px;white-space:nowrap}
+.radar-pin:hover .radar-pin__title,
+.radar-pin--selected .radar-pin__title{display:block}
+
+/* Radar Details Card */
+.radar-card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:clamp(16px,2.5vw,26px);display:flex;flex-direction:column;gap:12px;box-shadow:0 4px 18px rgba(0,0,0,.03)}
+.radar-card__category{font-size:10.5px;font-weight:700;letter-spacing:.12em;color:var(--accent);font-family:var(--b)}
+.radar-card__name{font-size:clamp(18px,2vw,22px);font-family:var(--d);font-weight:700;color:var(--ink);margin:0;line-height:1.2}
+.radar-card__desc{font-size:13.5px;color:var(--ink-2);line-height:1.5;margin:0}
+.radar-card__metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:12px;margin-top:6px;border-top:1px solid var(--line);padding-top:14px}
+.radar-metric__label{display:block;font-size:11px;color:var(--ink-3);margin-bottom:2px}
+.radar-metric__val{display:block;font-size:14px;font-weight:700;color:var(--ink);font-family:var(--d)}
+
+@media(max-width:860px){
+  .radar-map__body{grid-template-columns:1fr}
+}

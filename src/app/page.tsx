@@ -1,4 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
+import AmbientSoundscape from "@/components/audio/AmbientSoundscape";
+import SunStudySimulator from "@/components/lighting/SunStudySimulator";
+import VicinityRadarMap from "@/components/map/VicinityRadarMap";
 
 export default function Home() {
   return (
@@ -17,9 +20,11 @@ export default function Home() {
             <a href="#hero">The Sanctuary</a>
             <a href="#studio">3D Pavilion</a>
             <a href="#okruzhenie">Ecosystem</a>
+            <a href="#radar">Vicinity Radar</a>
             <a href="#plan">Spatial Plan</a>
             <a href="#cena">Acquisition</a>
           </div>
+          <AmbientSoundscape />
           <a className="btn nav__cta" href="#zayavka">
             <span className="btn-l">Schedule Viewing</span>
             <span className="btn-s">Reserve</span>
@@ -28,7 +33,7 @@ export default function Home() {
       </nav>
 
       {/* ══ HERO SECTION ══ */}
-      <header className="hero" id="hero">
+      <header className="hero" id="hero" data-solar-phase="golden">
         <div className="hero__pin">
           <img
             className="hero__poster"
@@ -49,6 +54,9 @@ export default function Home() {
           <div className="hero__veil"></div>
           <div className="hero__scrim"></div>
           <div className="hero__grain"></div>
+
+          {/* Interactive Daylight & Solar Study Control */}
+          <SunStudySimulator />
 
           <div className="hero__copy">
             <div className="wrap">
@@ -783,8 +791,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══ LOCATION ══ */}
-      <section className="sec">
+      {/* ══ LOCATION & INTERACTIVE RADAR ══ */}
+      <section className="sec" id="radar">
         <div className="wrap">
           <div className="split">
             <figure style={{ margin: 0 }}>
@@ -830,6 +838,9 @@ export default function Home() {
               </div>
             </div>
           </div>
+
+          {/* Interactive Topographic Radar Map */}
+          <VicinityRadarMap />
         </div>
       </section>
 
