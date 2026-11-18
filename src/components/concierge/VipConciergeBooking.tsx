@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface TransportOption {
   id: string;
@@ -47,10 +47,13 @@ export default function VipConciergeBooking() {
     e.preventDefault();
     if (!fullName || !contact) return;
     setStatus("submitting");
-    setTimeout(() => {
-      setStatus("confirmed");
-    }, 900);
   };
+
+  useEffect(() => {
+    if (status !== "submitting") return;
+    const id = setTimeout(() => setStatus("confirmed"), 900);
+    return () => clearTimeout(id);
+  }, [status]);
 
   return (
     <div className="vip-concierge" aria-label="VIP Concierge Booking & Private Transport Selection">

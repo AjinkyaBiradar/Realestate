@@ -100,7 +100,7 @@ export default function AmbientSoundscape() {
 
       const ctx = audioCtxRef.current;
       if (ctx.state === "suspended") {
-        ctx.resume();
+        ctx.resume().catch(() => {});
       }
 
       if (gainNodeRef.current) {
