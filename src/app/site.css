@@ -96,44 +96,36 @@ a{color:inherit}
 .skip:focus{left:16px}
 
 /* liquid-glass навбар */
-.nav{position:fixed;inset:10px 0 auto;z-index:60;pointer-events:none}
+.nav{position:fixed;inset:12px 0 auto;z-index:60;pointer-events:none}
 .nav__in>*{pointer-events:auto}
-.nav__in{width:min(860px,90vw);margin:0 auto;display:flex;align-items:center;gap:16px;
-  padding:7px 8px 7px 20px;border-radius:999px;pointer-events:auto;
-  background:rgba(255,255,255,.58);backdrop-filter:blur(24px) saturate(1.8);
-  -webkit-backdrop-filter:blur(24px) saturate(1.8);border:1px solid rgba(255,255,255,.65);
-  box-shadow:0 1px 0 rgba(255,255,255,.8) inset,0 10px 32px rgba(0,0,0,.12);
+.nav__in{width:min(1080px,94vw);margin:0 auto;display:flex;align-items:center;gap:clamp(10px,1.4vw,20px);
+  padding:7px 10px 7px 22px;border-radius:999px;pointer-events:auto;
+  background:rgba(20,19,17,.82);backdrop-filter:blur(32px) saturate(1.8);
+  -webkit-backdrop-filter:blur(32px) saturate(1.8);border:1px solid rgba(255,255,255,.14);
+  box-shadow:0 1px 0 rgba(255,255,255,.14) inset,0 16px 40px rgba(0,0,0,.3);
   transition:transform .4s cubic-bezier(.22,1,.36,1),background .3s ease}
-.nav__brand{font:700 13.5px/1 var(--d);letter-spacing:-.01em;color:var(--ink)}
-.nav__brand span{color:var(--ink-3);font-weight:500}
-.nav__links{margin-left:auto;display:flex;gap:20px;font-size:13px}
-.nav__links a{text-decoration:none;color:var(--ink);font-weight:500;opacity:.82;transition:opacity .2s ease}
-.nav__links a:hover{opacity:1}
+.nav__brand{font:700 13.5px/1 var(--d);letter-spacing:.02em;color:#fff;white-space:nowrap}
+.nav__brand span{color:rgba(255,255,255,.6);font-weight:500;font-size:12.5px}
+.nav__links{margin-left:auto;display:flex;align-items:center;gap:clamp(8px,1.2vw,16px);font-size:12.5px}
+.nav__links a{text-decoration:none;color:rgba(255,255,255,.8);font-weight:500;padding:5px 8px;border-radius:999px;white-space:nowrap;transition:all .2s ease}
+.nav__links a:hover{color:#fff;background:rgba(255,255,255,.12)}
 /* Переключатели языков скрыты */
 .nav__langs{display:none}
-.nav__cta{padding:7px 15px;font-size:12.5px}
+.nav__cta{padding:8px 18px;font-size:12.5px;font-weight:600;white-space:nowrap;border-radius:999px;background:#f59e0b;color:#13110e;border:1px solid rgba(245,158,11,.4);box-shadow:0 2px 12px rgba(245,158,11,.25)}
+.nav__cta:hover{background:#d97706;color:#fff}
 .btn-s{display:none}
-/* ⚠️ Порог 860 → 900. Замер на проде: между 861 и 893 px строка разделов, языки и
-   кнопка НЕ ВЛЕЗАЛИ в пилюлю навбара — она переполнялась на 29 px (861), 11 (880).
-   Дефект был и до появления меню; теперь ровно в этой полосе разделы уходят
-   под бургер, где им и место. */
-@media(max-width:900px){.nav__links{display:none}
+@media(max-width:980px){.nav__links{display:none}
   .nav__in{justify-content:space-between}
-  .nav__cta{padding:9px 15px;font-size:13.5px;margin-left:0}
+  .nav__cta{padding:8px 14px;font-size:12.5px;margin-left:0}
   .btn-l{display:none}.btn-s{display:inline}}
 
-/* ─── меню на телефоне (правка 21.08) ───
-   До неё разделов на узком экране не было вообще: .nav__links скрыты ниже 860 px,
-   и в «Планировку» или «Цену» можно было попасть только прокруткой всей страницы.
-   ⚠️ Языки уезжают в панель, а не остаются в баре: замер бара показал, что он и без
-   бургера переполнен — на 320 px не хватало 11 px, а переключатель занимал 92 из 294.
-   Кнопку и панель строит site.js клонированием уже существующих ссылок. */
+/* ─── меню на телефоне ─── */
 .nav__burger{display:none;appearance:none;border:0;background:transparent;cursor:pointer;
   width:38px;height:38px;padding:9px;margin-left:auto;border-radius:12px;
   flex-direction:column;justify-content:space-between}
-.nav__burger i{display:block;height:2px;border-radius:2px;background:var(--ink-2);
+.nav__burger i{display:block;height:2px;border-radius:2px;background:rgba(255,255,255,.8);
   transition:transform .3s cubic-bezier(.22,1,.36,1),opacity .2s}
-.nav__burger:hover i{background:var(--ink)}
+.nav__burger:hover i{background:#fff}
 .nav__burger:focus-visible{outline:2.5px solid var(--accent);outline-offset:2px}
 /* Раскрытый бургер становится крестом: иначе непонятно, чем закрыть панель. */
 .nav__burger[aria-expanded=true] i:nth-child(1){transform:translateY(7px) rotate(45deg)}
@@ -757,10 +749,10 @@ footer.site a{color:var(--accent-dark)}
 /* ══════════════ PHASE 2: INTERACTIVE FEATURES ══════════════ */
 
 /* 1. Spatial Ambient Audio Toggle */
-.sound-toggle{display:inline-flex;align-items:center;gap:7px;background:rgba(29,28,25,.06);border:1px solid rgba(29,28,25,.08);padding:5px 12px;border-radius:999px;cursor:pointer;color:var(--ink-2);font:500 11.5px/1 var(--b);transition:all .2s ease;margin-left:8px}
-.sound-toggle:hover{background:rgba(29,28,25,.12);color:var(--ink)}
+.sound-toggle{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);padding:5px 12px;border-radius:999px;cursor:pointer;color:rgba(255,255,255,.85);font:500 11.5px/1 var(--b);transition:all .2s ease;margin-left:6px}
+.sound-toggle:hover{background:rgba(255,255,255,.16);color:#fff}
 .sound-toggle__bars{display:flex;align-items:flex-end;gap:2px;height:12px;width:12px}
-.sound-bar{width:2px;height:4px;background:var(--ink);border-radius:1px;transition:height .2s ease}
+.sound-bar{width:2px;height:4px;background:#f59e0b;border-radius:1px;transition:height .2s ease}
 .sound-bar--animated{animation:soundWave .85s ease-in-out infinite alternate}
 @keyframes soundWave{0%{height:3px}50%{height:12px}100%{height:5px}}
 
@@ -855,3 +847,82 @@ footer.site a{color:var(--accent-dark)}
 @media(max-width:860px){
   .radar-map__body{grid-template-columns:1fr}
 }
+
+/* ══════════════ PHASE 3: SPATIAL ARCHITECTURE & VIP CONCIERGE ══════════════ */
+
+/* 1. 3D Isometric Dollhouse Floorplan */
+.dollhouse{background:var(--paper-2);border:1px solid var(--line);border-radius:var(--r);padding:clamp(16px,2.5vw,28px);box-shadow:0 8px 30px rgba(0,0,0,.04);margin-top:28px}
+.dollhouse__bar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:20px}
+.dollhouse__tabs{display:flex;background:var(--card);padding:4px;border-radius:999px;border:1px solid var(--line);gap:4px}
+.dollhouse__tab{appearance:none;border:0;background:transparent;color:var(--ink-2);font:500 12.5px/1 var(--b);padding:8px 16px;border-radius:999px;cursor:pointer;transition:all .2s ease}
+.dollhouse__tab:hover{color:var(--ink)}
+.dollhouse__tab--active{background:var(--ink);color:var(--paper)}
+.dollhouse__badge{display:inline-flex;align-items:center;gap:7px;font-size:12px;color:var(--ink-2);background:var(--card);border:1px solid var(--line);padding:6px 14px;border-radius:999px}
+.dollhouse__badge-dot{width:6px;height:6px;border-radius:50%;background:#f59e0b;box-shadow:0 0 6px #f59e0b}
+.dollhouse__stage{display:grid;grid-template-columns:1.5fr 1fr;gap:24px;align-items:center}
+.dollhouse__isometric{position:relative;width:100%;aspect-ratio:16/10;background:radial-gradient(circle at 50% 40%,#1e222b 0%,#0f1116 100%);border-radius:var(--r);overflow:hidden;border:1px solid rgba(255,255,255,.1)}
+.dollhouse__svg{width:100%;height:100%;display:block}
+
+/* Dollhouse Hotspot Pins */
+.dollhouse-pin{position:absolute;transform:translate(-50%,-50%);appearance:none;border:0;background:transparent;cursor:pointer;z-index:10;display:flex;flex-direction:column;align-items:center;padding:4px}
+.dollhouse-pin__core{width:11px;height:11px;border-radius:50%;background:#f59e0b;border:2px solid #fff;box-shadow:0 0 10px rgba(245,158,11,.8);transition:transform .2s ease,background .2s ease}
+.dollhouse-pin:hover .dollhouse-pin__core,
+.dollhouse-pin--active .dollhouse-pin__core{transform:scale(1.4);background:#fff;border-color:#f59e0b}
+.dollhouse-pin__label{font-size:10px;font-weight:600;color:rgba(255,255,255,.9);background:rgba(12,14,18,.85);padding:3px 7px;border-radius:4px;margin-top:4px;white-space:nowrap;pointer-events:none}
+.dollhouse-pin--active .dollhouse-pin__label{color:#f59e0b;border:1px solid rgba(245,158,11,.4)}
+
+/* Dollhouse Details Card */
+.dollhouse__card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:clamp(16px,2.5vw,26px);display:flex;flex-direction:column;gap:12px;box-shadow:0 4px 18px rgba(0,0,0,.03)}
+.dollhouse__card-level{font-size:11px;font-weight:700;letter-spacing:.12em;color:var(--accent);font-family:var(--b)}
+.dollhouse__card-title{font-size:clamp(18px,2vw,24px);font-family:var(--d);font-weight:700;color:var(--ink);margin:0;line-height:1.2}
+.dollhouse__card-desc{font-size:14px;color:var(--ink-2);line-height:1.55;margin:0}
+.dollhouse__card-specs{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:14px;margin-top:6px;border-top:1px solid var(--line);padding-top:14px}
+.dollhouse__spec-label{display:block;font-size:11px;color:var(--ink-3);margin-bottom:3px}
+.dollhouse__spec-val{display:block;font-size:13.5px;font-weight:600;color:var(--ink);font-family:var(--b)}
+
+@media(max-width:860px){
+  .dollhouse__stage{grid-template-columns:1fr}
+}
+
+/* 2. Sustainable Architecture & Carbon Performance Tracker */
+.sustainability-tracker{background:var(--paper-2);border:1px solid var(--line);border-radius:var(--r);padding:clamp(20px,3.5vw,36px);box-shadow:0 8px 30px rgba(0,0,0,.04)}
+.sustainability-tracker__header{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:16px;margin-bottom:28px}
+.sustainability-badge{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#10b981;margin-bottom:6px}
+.sustainability-title{font-size:clamp(22px,2.6vw,34px);font-family:var(--d);font-weight:700;color:var(--ink);margin:0}
+.sustainability-standards{display:flex;gap:8px;flex-wrap:wrap}
+.standard-chip{font-size:11.5px;font-weight:600;padding:5px 12px;border-radius:999px;background:var(--card);border:1px solid var(--line);color:var(--ink-2)}
+
+.sustainability-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.sustainability-card{appearance:none;border:1px solid var(--line);background:var(--card);border-radius:var(--r);padding:22px;text-align:left;cursor:pointer;transition:all .25s ease;display:flex;flex-direction:column;gap:6px}
+.sustainability-card:hover{border-color:var(--ink-3);transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.05)}
+.sustainability-card--active{border-color:#10b981;box-shadow:0 0 0 1px #10b981, 0 8px 24px rgba(16,185,129,.12)}
+.sustainability-card__val{font-size:clamp(24px,2.5vw,32px);font-family:var(--d);font-weight:700;line-height:1.1}
+.sustainability-card__label{font-size:14px;font-weight:600;color:var(--ink)}
+.sustainability-card__sub{font-size:12.5px;color:var(--ink-2);line-height:1.45;margin:4px 0 0}
+
+/* 3. VIP Concierge Booking & Private Transport Selection */
+.vip-concierge{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:clamp(20px,3.2vw,36px);box-shadow:0 8px 30px rgba(0,0,0,.04)}
+.vip-transport{margin-bottom:22px}
+.vip-transport__label{display:block;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-bottom:12px}
+.vip-transport__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+.vip-transport__card{appearance:none;border:1px solid var(--line);background:var(--paper-2);border-radius:12px;padding:14px;text-align:left;cursor:pointer;transition:all .2s ease;display:flex;flex-direction:column;gap:6px}
+.vip-transport__card:hover{border-color:var(--accent)}
+.vip-transport__card--active{border-color:var(--ink);background:var(--card);box-shadow:0 0 0 1.5px var(--ink)}
+.vip-transport__top{display:flex;justify-content:space-between;align-items:center}
+.vip-transport__icon{font-size:20px}
+.vip-transport__badge{font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:999px;background:rgba(29,28,25,.08);color:var(--ink-2)}
+.vip-transport__card--active .vip-transport__badge{background:var(--ink);color:var(--paper)}
+.vip-transport__name{font-size:13.5px;font-weight:700;color:var(--ink);margin:0;line-height:1.2}
+.vip-transport__desc{font-size:11.5px;color:var(--ink-2);line-height:1.4;margin:0}
+
+.vip-fields{display:flex;flex-direction:column;gap:14px}
+.vip-row-split{display:grid;grid-template-columns:1.5fr 1fr;gap:12px}
+@media(max-width:580px){.vip-row-split{grid-template-columns:1fr}}
+.vip-select{width:100%;padding:14px 16px;border-radius:12px;border:1px solid var(--line);background:var(--paper);font:500 15px/1.2 var(--b);color:var(--ink);outline:none;transition:border-color .2s ease}
+.vip-select:focus{border-color:var(--ink)}
+
+/* VIP Reservation Confirmation Banner */
+.vip-confirmed{padding:32px 20px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px}
+.vip-confirmed__icon{width:48px;height:48px;border-radius:50%;background:#10b981;color:#fff;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:6px}
+.vip-confirmed__title{font-size:24px;font-family:var(--d);font-weight:700;color:var(--ink);margin:0}
+.vip-confirmed__desc{font-size:15px;color:var(--ink-2);max-width:50ch;line-height:1.6;margin:0 auto}

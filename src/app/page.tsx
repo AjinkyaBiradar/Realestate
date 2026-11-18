@@ -2,6 +2,9 @@
 import AmbientSoundscape from "@/components/audio/AmbientSoundscape";
 import SunStudySimulator from "@/components/lighting/SunStudySimulator";
 import VicinityRadarMap from "@/components/map/VicinityRadarMap";
+import FloorplanDollhouse from "@/components/floorplan/FloorplanDollhouse";
+import CarbonEnergyTracker from "@/components/sustainability/CarbonEnergyTracker";
+import VipConciergeBooking from "@/components/concierge/VipConciergeBooking";
 
 export default function Home() {
   return (
@@ -17,17 +20,17 @@ export default function Home() {
             KAIROS <span>· Lakeside Sanctuary</span>
           </span>
           <div className="nav__links">
-            <a href="#hero">The Sanctuary</a>
+            <a href="#hero">Sanctuary</a>
             <a href="#studio">3D Pavilion</a>
-            <a href="#okruzhenie">Ecosystem</a>
-            <a href="#radar">Vicinity Radar</a>
-            <a href="#plan">Spatial Plan</a>
+            <a href="#sustainability">Ecology</a>
+            <a href="#radar">Vicinity</a>
+            <a href="#plan">Blueprint</a>
             <a href="#cena">Acquisition</a>
           </div>
           <AmbientSoundscape />
           <a className="btn nav__cta" href="#zayavka">
-            <span className="btn-l">Schedule Viewing</span>
-            <span className="btn-s">Reserve</span>
+            <span className="btn-l">Schedule Tour</span>
+            <span className="btn-s">Tour</span>
           </a>
         </div>
       </nav>
@@ -498,6 +501,13 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ══ SUSTAINABILITY & CARBON PERFORMANCE ══ */}
+      <section className="sec" id="sustainability">
+        <div className="wrap">
+          <CarbonEnergyTracker />
+        </div>
+      </section>
+
       {/* ══ SURROUNDINGS ══ */}
       <section className="sec" id="okruzhenie">
         <div className="wrap">
@@ -639,6 +649,18 @@ export default function Home() {
             private timber sauna, guest suites behind slatted timber louvres, and
             an open contemplation gallery.
           </p>
+
+          {/* 3D Isometric Dollhouse Spatial Cutaway */}
+          <FloorplanDollhouse />
+
+          <div style={{ marginTop: "56px", marginBottom: "20px" }}>
+            <h3 style={{ fontSize: "20px", fontFamily: "var(--d)", color: "var(--ink)" }}>
+              Technical Architectural CAD Drafting &amp; Room Schedule
+            </h3>
+            <p className="muted" style={{ margin: "6px 0 0" }}>
+              Explore certified millimeter-accurate structural layouts and room dimensions.
+            </p>
+          </div>
 
           <figure className="plan" id="planFig">
             <div className="plan__bar">
@@ -1003,64 +1025,7 @@ export default function Home() {
               </p>
             </div>
             <div>
-              <form className="form" id="leadForm" noValidate>
-                <div className="field">
-                  <label htmlFor="fname">Your name</label>
-                  <input
-                    id="fname"
-                    name="name"
-                    type="text"
-                    required
-                    autoComplete="name"
-                    placeholder="Full Name"
-                  />
-                  <span className="err" id="err-name"></span>
-                </div>
-                <div className="field">
-                  <label htmlFor="fphone">Phone / WhatsApp</label>
-                  <input
-                    id="fphone"
-                    name="phone"
-                    type="tel"
-                    required
-                    autoComplete="tel"
-                    placeholder="+1 (555) 000-0000"
-                    inputMode="tel"
-                  />
-                  <span className="err" id="err-phone"></span>
-                </div>
-                <div className="field">
-                  <label htmlFor="fwhen">Preferred viewing time &amp; transfer format</label>
-                  <input
-                    id="fwhen"
-                    name="when"
-                    type="text"
-                    placeholder="e.g. Saturday afternoon · EV Chauffeur / Helicopter"
-                  />
-                  <span className="err"></span>
-                </div>
-                <div className="hp" aria-hidden="true">
-                  <label htmlFor="fhp">Leave this field empty</label>
-                  <input
-                    id="fhp"
-                    name="hp_website"
-                    type="text"
-                    tabIndex={-1}
-                    autoComplete="off"
-                  />
-                </div>
-                <button className="btn" type="submit" id="formSubmit">
-                  Schedule Private Viewing
-                </button>
-                <p className="muted" style={{ margin: 0 }}>
-                  Our private client concierge will respond within four business
-                  hours. Absolute privacy guaranteed.
-                </p>
-              </form>
-              <div className="ok" id="formOk" hidden role="status">
-                <h3>Viewing Confirmed</h3>
-                <p style={{ marginTop: "10px", color: "var(--ink-2)" }} id="okText"></p>
-              </div>
+              <VipConciergeBooking />
             </div>
           </div>
         </div>
