@@ -853,7 +853,7 @@ footer.site a{color:var(--accent-dark)}
 
 /* ══════════════ PHASE 3: SPATIAL ARCHITECTURE & VIP CONCIERGE ══════════════ */
 
-/* 1. 3D Isometric Dollhouse Floorplan */
+/* 1. Interactive Spatial Room Visualizer */
 .dollhouse{background:var(--paper-2);border:1px solid var(--line);border-radius:var(--r);padding:clamp(16px,2.5vw,28px);box-shadow:0 8px 30px rgba(0,0,0,.04);margin-top:28px}
 .dollhouse__bar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:20px}
 .dollhouse__tabs{display:flex;background:var(--card);padding:4px;border-radius:999px;border:1px solid var(--line);gap:4px}
@@ -862,26 +862,39 @@ footer.site a{color:var(--accent-dark)}
 .dollhouse__tab--active{background:var(--ink);color:var(--paper)}
 .dollhouse__badge{display:inline-flex;align-items:center;gap:7px;font-size:12px;color:var(--ink-2);background:var(--card);border:1px solid var(--line);padding:6px 14px;border-radius:999px}
 .dollhouse__badge-dot{width:6px;height:6px;border-radius:50%;background:#f59e0b;box-shadow:0 0 6px #f59e0b}
-.dollhouse__stage{display:grid;grid-template-columns:1.5fr 1fr;gap:24px;align-items:center}
-.dollhouse__isometric{position:relative;width:100%;aspect-ratio:16/10;background:radial-gradient(circle at 50% 40%,#1e222b 0%,#0f1116 100%);border-radius:var(--r);overflow:hidden;border:1px solid rgba(255,255,255,.1)}
-.dollhouse__svg{width:100%;height:100%;display:block}
+.dollhouse__stage{display:grid;grid-template-columns:1.45fr 1fr;gap:24px;align-items:stretch}
 
-/* Dollhouse Hotspot Pins */
-.dollhouse-pin{position:absolute;transform:translate(-50%,-50%);appearance:none;border:0;background:transparent;cursor:pointer;z-index:10;display:flex;flex-direction:column;align-items:center;padding:4px}
-.dollhouse-pin__core{width:11px;height:11px;border-radius:50%;background:#f59e0b;border:2px solid #fff;box-shadow:0 0 10px rgba(245,158,11,.8);transition:transform .2s ease,background .2s ease}
-.dollhouse-pin:hover .dollhouse-pin__core,
-.dollhouse-pin--active .dollhouse-pin__core{transform:scale(1.4);background:#fff;border-color:#f59e0b}
-.dollhouse-pin__label{font-size:10px;font-weight:600;color:rgba(255,255,255,.9);background:rgba(12,14,18,.85);padding:3px 7px;border-radius:4px;margin-top:4px;white-space:nowrap;pointer-events:none}
-.dollhouse-pin--active .dollhouse-pin__label{color:#f59e0b;border:1px solid rgba(245,158,11,.4)}
+.dollhouse__viewport{display:flex;flex-direction:column;gap:12px}
+.dollhouse__image-wrap{position:relative;width:100%;aspect-ratio:16/10;border-radius:var(--r);overflow:hidden;border:1px solid rgba(255,255,255,.12);box-shadow:0 12px 32px rgba(0,0,0,.18);background:#12141a}
+.dollhouse__photo{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
+.dollhouse__image-wrap:hover .dollhouse__photo{transform:scale(1.02)}
+.dollhouse__overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35) 0%,rgba(0,0,0,0) 35%,rgba(0,0,0,.45) 100%);pointer-events:none}
+
+.dollhouse__telemetry-top{position:absolute;top:14px;left:14px;right:14px;display:flex;justify-content:space-between;align-items:center;gap:8px;pointer-events:none}
+.dollhouse__chip{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;letter-spacing:.04em;background:rgba(18,20,26,.78);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.16);color:#fff;padding:4px 10px;border-radius:999px}
+.dollhouse__chip--gold{color:#fbbf24;border-color:rgba(251,191,36,.35)}
+
+.dollhouse__room-strip{display:flex;gap:8px;flex-wrap:wrap;padding:4px 0}
+.dollhouse__room-btn{appearance:none;border:1px solid var(--line);background:var(--card);color:var(--ink-2);font:500 12px/1 var(--b);padding:7px 14px;border-radius:999px;cursor:pointer;transition:all .2s ease;display:inline-flex;align-items:center;gap:7px}
+.dollhouse__room-btn:hover{color:var(--ink);border-color:var(--ink-3)}
+.dollhouse__room-btn--active{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.dollhouse__room-dot{width:6px;height:6px;border-radius:50%;background:#f59e0b}
+.dollhouse__room-btn--active .dollhouse__room-dot{background:#fff}
+
+.dollhouse__features{margin:4px 0 10px}
+.dollhouse__feat-title{font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);display:block;margin-bottom:8px}
+.dollhouse__feat-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:6px}
+.dollhouse__feat-item{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--ink-2)}
+.dollhouse__feat-icon{color:#f59e0b;font-size:10px}
 
 /* Dollhouse Details Card */
-.dollhouse__card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:clamp(16px,2.5vw,26px);display:flex;flex-direction:column;gap:12px;box-shadow:0 4px 18px rgba(0,0,0,.03)}
+.dollhouse__card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:clamp(16px,2.5vw,26px);display:flex;flex-direction:column;gap:12px;box-shadow:0 4px 18px rgba(0,0,0,.03);justify-content:space-between}
 .dollhouse__card-level{font-size:11px;font-weight:700;letter-spacing:.12em;color:var(--accent);font-family:var(--b)}
 .dollhouse__card-title{font-size:clamp(18px,2vw,24px);font-family:var(--d);font-weight:700;color:var(--ink);margin:0;line-height:1.2}
 .dollhouse__card-desc{font-size:14px;color:var(--ink-2);line-height:1.55;margin:0}
-.dollhouse__card-specs{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:14px;margin-top:6px;border-top:1px solid var(--line);padding-top:14px}
+.dollhouse__card-specs{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:12px;margin-top:6px;border-top:1px solid var(--line);padding-top:14px}
 .dollhouse__spec-label{display:block;font-size:11px;color:var(--ink-3);margin-bottom:3px}
-.dollhouse__spec-val{display:block;font-size:13.5px;font-weight:600;color:var(--ink);font-family:var(--b)}
+.dollhouse__spec-val{display:block;font-size:13px;font-weight:600;color:var(--ink);font-family:var(--b);line-height:1.3}
 
 @media(max-width:860px){
   .dollhouse__stage{grid-template-columns:1fr}

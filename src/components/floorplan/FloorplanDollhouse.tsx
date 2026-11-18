@@ -2,29 +2,33 @@
 
 import { useState } from "react";
 
-interface Hotspot {
+interface SpatialRoom {
   id: string;
   name: string;
   level: 1 | 2;
   area: string;
   ceiling: string;
   finish: string;
-  x: number; // percentage
-  y: number; // percentage
+  orientation: string;
+  image: string;
   description: string;
+  features: string[];
 }
 
-const DOLLHOUSE_HOTSPOTS: Hotspot[] = [
+const SPATIAL_ROOMS: SpatialRoom[] = [
+  // Level 1
   {
     id: "deck",
     name: "Cantilevered Lake Deck",
     level: 1,
     area: "96 m²",
     ceiling: "Open Sky",
-    finish: "Nordic Kebony & Concealed Granite Pylons",
-    x: 28,
-    y: 72,
-    description: "Hovering directly above the waterline with an infinity sheet of mirror lake water cascading off the outer rim.",
+    finish: "Nordic Kebony & Flamed Granite Pylons",
+    orientation: "West · Lakefront Sunset",
+    image: "/assets/img/hero_terrace.dc94d0c7.webp",
+    description:
+      "Hovering directly above the waterline with an infinity sheet of mirror lake water cascading off the outer rim into the quiet lake.",
+    features: ["Direct water access pier", "Infinity plunge cascade", "Concealed perimeter LED lighting"],
   },
   {
     id: "greatroom",
@@ -33,31 +37,38 @@ const DOLLHOUSE_HOTSPOTS: Hotspot[] = [
     area: "88 m²",
     ceiling: "6.4 m Double Height",
     finish: "Smoked European Oak & Blackened Steel Hearth",
-    x: 48,
-    y: 54,
-    description: "Monolithic hearth, acoustic clay plaster walls with hidden flush speakers, and 12-meter motorized low-iron sliding glass.",
+    orientation: "South-West · Water & Pine Panorama",
+    image: "/assets/img/int_living.1dc7ddf2.webp",
+    description:
+      "Monolithic suspended hearth, acoustic clay plaster walls with hidden flush acoustics, and 12-meter motorized low-iron sliding glass.",
+    features: ["Suspended steel hearth", "12m motorized glass sliding wall", "Hidden acoustic ceiling baffles"],
   },
   {
     id: "kitchen",
-    name: "Quartzite Island Kitchen",
+    name: "Quartzite Island Kitchen & Dining",
     level: 1,
     area: "42 m²",
     ceiling: "3.2 m Clear",
-    finish: "Flamed Basalt & Matte Smoked Oak",
-    x: 68,
-    y: 42,
-    description: "Single-block 4.2m island with integrated Gaggenau induction, hidden scullery pantry, and wine cellar refrigeration.",
+    finish: "Flamed Basalt, Quartzite & Smoked Oak",
+    orientation: "East · Morning Forest Glade",
+    image: "/assets/img/int_kitchen.e1d4b5ae.webp",
+    description:
+      "Single-block 4.2m island with integrated Gaggenau induction, hidden scullery pantry, and sommelier wine preservation.",
+    features: ["4.2m single-block island", "Concealed scullery pantry", "Integrated sommelier cellar"],
   },
+  // Level 2
   {
     id: "master",
     name: "Master Penthouse Suite",
     level: 2,
     area: "64 m²",
     ceiling: "3.4 m Sloped",
-    finish: "Natural Larch, Concealed Dressing Suite",
-    x: 52,
-    y: 30,
-    description: "Elevated above the pine tree canopy with 180° panoramic water views and morning sunrise orientation.",
+    finish: "Natural Larch & Concealed Dressing Suite",
+    orientation: "East · Lake Mist & Sunrise",
+    image: "/assets/img/int_bedroom.49f50a91.webp",
+    description:
+      "Elevated above the pine tree canopy with 180° panoramic water views, acoustic timber louvres, and private sunrise contemplation terrace.",
+    features: ["180° canopy water views", "Private contemplation balcony", "Concealed walk-through wardrobe"],
   },
   {
     id: "sauna",
@@ -66,20 +77,45 @@ const DOLLHOUSE_HOTSPOTS: Hotspot[] = [
     area: "32 m²",
     ceiling: "3.0 m",
     finish: "Thermo-Aspen & Honed Granite",
-    x: 74,
-    y: 26,
-    description: "Traditional wood-burning Finnish sauna heater, cold plunge pool, and frameless glass overlooking the lake mist.",
+    orientation: "North-West · Pine Forest Solitude",
+    image: "/assets/img/int_spa.3f81d5b0.webp",
+    description:
+      "Traditional wood-burning Finnish sauna heater, sunken cold plunge bath, and frameless floor-to-ceiling glass overlooking the forest mist.",
+    features: ["Wood-fired Finnish sauna", "Sunken cold plunge bath", "Aromatherapy steam system"],
+  },
+  {
+    id: "stair",
+    name: "Floating Arrival Gallery & Staircase",
+    level: 2,
+    area: "28 m²",
+    ceiling: "Double Height Void",
+    finish: "Cantilevered Oak & Low-Iron Glass",
+    orientation: "Central Architectural Axis",
+    image: "/assets/img/int_stair.a4b81c30.webp",
+    description:
+      "A weightless transition between pavilions with concealed perimeter step lighting and continuous sightlines through the old-growth pines.",
+    features: ["Cantilevered oak treads", "Frameless glass balustrade", "Double-height vertical sightlines"],
   },
 ];
 
 export default function FloorplanDollhouse() {
   const [activeLevel, setActiveLevel] = useState<1 | 2>(1);
-  const [activeHotspot, setActiveHotspot] = useState<Hotspot>(DOLLHOUSE_HOTSPOTS[0]);
+  const [activeRoomId, setActiveRoomId] = useState<string>("deck");
 
-  const levelSpots = DOLLHOUSE_HOTSPOTS.filter((h) => h.level === activeLevel);
+  const levelRooms = SPATIAL_ROOMS.filter((r) => r.level === activeLevel);
+  const currentRoom =
+    SPATIAL_ROOMS.find((r) => r.id === activeRoomId) || levelRooms[0];
+
+  const handleLevelChange = (lvl: 1 | 2) => {
+    setActiveLevel(lvl);
+    const firstRoomOfLevel = SPATIAL_ROOMS.find((r) => r.level === lvl);
+    if (firstRoomOfLevel) {
+      setActiveRoomId(firstRoomOfLevel.id);
+    }
+  };
 
   return (
-    <div className="dollhouse" aria-label="3D Isometric Dollhouse Floorplan">
+    <div className="dollhouse" aria-label="Interactive Spatial Architecture Visualizer">
       {/* Level Selector & Telemetry Bar */}
       <div className="dollhouse__bar">
         <div className="dollhouse__tabs" role="tablist" aria-label="Select architectural level">
@@ -87,10 +123,7 @@ export default function FloorplanDollhouse() {
             type="button"
             role="tab"
             aria-selected={activeLevel === 1}
-            onClick={() => {
-              setActiveLevel(1);
-              setActiveHotspot(DOLLHOUSE_HOTSPOTS[0]);
-            }}
+            onClick={() => handleLevelChange(1)}
             className={`dollhouse__tab ${activeLevel === 1 ? "dollhouse__tab--active" : ""}`}
           >
             Level 1 · Ground Pavilion (219 m²)
@@ -99,10 +132,7 @@ export default function FloorplanDollhouse() {
             type="button"
             role="tab"
             aria-selected={activeLevel === 2}
-            onClick={() => {
-              setActiveLevel(2);
-              setActiveHotspot(DOLLHOUSE_HOTSPOTS[3]);
-            }}
+            onClick={() => handleLevelChange(2)}
             className={`dollhouse__tab ${activeLevel === 2 ? "dollhouse__tab--active" : ""}`}
           >
             Level 2 · Sky Pavilion (201 m²)
@@ -111,107 +141,99 @@ export default function FloorplanDollhouse() {
 
         <div className="dollhouse__badge">
           <span className="dollhouse__badge-dot" />
-          <span>3D Isometric Spatial Cutaway</span>
+          <span>Interactive Spatial Room Visualizer · 4K Photorealistic Architecture</span>
         </div>
       </div>
 
       <div className="dollhouse__stage">
-        {/* Stylized Architectural Cutaway Visualizer */}
-        <div className="dollhouse__isometric">
-          <svg
-            className="dollhouse__svg"
-            viewBox="0 0 800 500"
-            preserveAspectRatio="xMidYMid meet"
-            aria-hidden="true"
-          >
-            <defs>
-              <linearGradient id="groundGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#1e222a" />
-                <stop offset="100%" stopColor="#12151b" />
-              </linearGradient>
-              <linearGradient id="glassGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="rgba(96, 165, 250, 0.25)" />
-                <stop offset="100%" stopColor="rgba(96, 165, 250, 0.05)" />
-              </linearGradient>
-              <linearGradient id="timberGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#2c2722" />
-                <stop offset="100%" stopColor="#1c1916" />
-              </linearGradient>
-            </defs>
+        {/* Photorealistic Architectural Room Viewport */}
+        <div className="dollhouse__viewport">
+          {/* Main Visual Render with smooth overlay */}
+          <div className="dollhouse__image-wrap">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              key={currentRoom.id}
+              src={currentRoom.image}
+              alt={currentRoom.name}
+              className="dollhouse__photo"
+              loading="lazy"
+            />
+            <div className="dollhouse__overlay" />
 
-            {/* Isometric Ground Base / Water Surface */}
-            <polygon points="400,80 720,240 400,400 80,240" fill="url(#groundGrad)" stroke="rgba(255,255,255,0.08)" strokeWidth="1" />
-            <polygon points="400,400 720,240 720,260 400,420" fill="#0d0f14" />
-            <polygon points="400,400 80,240 80,260 400,420" fill="#090a0d" />
+            {/* Viewfinder Telemetry Overlay */}
+            <div className="dollhouse__telemetry-top">
+              <span className="dollhouse__chip">
+                LEVEL {currentRoom.level} · {currentRoom.area}
+              </span>
+              <span className="dollhouse__chip dollhouse__chip--gold">
+                🧭 {currentRoom.orientation}
+              </span>
+            </div>
+          </div>
 
-            {/* Level 1 Pavilion Structure */}
-            {activeLevel === 1 && (
-              <g className="iso-level-1">
-                {/* Cantilever Deck extension over water */}
-                <polygon points="280,260 440,340 360,380 200,300" fill="#3a342c" stroke="#f59e0b" strokeWidth="1" strokeDasharray="3 3" />
-                {/* Great Room Volume */}
-                <polygon points="360,180 560,280 440,340 240,240" fill="url(#timberGrad)" stroke="rgba(255,255,255,0.2)" strokeWidth="1" />
-                {/* Frameless Glass Wall Indicator */}
-                <polygon points="360,180 560,280 560,210 360,110" fill="url(#glassGrad)" stroke="rgba(96, 165, 250, 0.5)" strokeWidth="1" />
-                {/* Kitchen / Gallery Core */}
-                <polygon points="480,180 640,260 560,300 400,220" fill="#242220" stroke="rgba(255,255,255,0.15)" strokeWidth="1" />
-                {/* Monolithic Quartzite Island Marker */}
-                <polygon points="500,230 550,255 530,265 480,240" fill="#c8a877" />
-              </g>
-            )}
-
-            {/* Level 2 Sky Pavilion Structure */}
-            {activeLevel === 2 && (
-              <g className="iso-level-2">
-                {/* Elevated Shifted Cantilever Volume */}
-                <polygon points="380,130 620,250 500,310 260,190" fill="url(#timberGrad)" stroke="#f59e0b" strokeWidth="1" />
-                {/* Penthouse Glass Panorama */}
-                <polygon points="380,130 620,250 620,180 380,60" fill="url(#glassGrad)" stroke="rgba(96, 165, 250, 0.6)" strokeWidth="1" />
-                {/* Finnish Sauna & Stone Spa Pod */}
-                <polygon points="520,200 620,250 580,270 480,220" fill="#4a3e35" stroke="rgba(255,255,255,0.2)" strokeWidth="1" />
-                {/* Master Bed Platform */}
-                <polygon points="360,170 420,200 390,215 330,185" fill="#f59e0b" opacity="0.8" />
-              </g>
-            )}
-          </svg>
-
-          {/* Interactive Hotspot Pins */}
-          {levelSpots.map((spot) => {
-            const isSelected = activeHotspot.id === spot.id;
-            return (
-              <button
-                key={spot.id}
-                type="button"
-                onClick={() => setActiveHotspot(spot)}
-                className={`dollhouse-pin ${isSelected ? "dollhouse-pin--active" : ""}`}
-                style={{ left: `${spot.x}%`, top: `${spot.y}%` }}
-                aria-label={`Select ${spot.name}`}
-              >
-                <span className="dollhouse-pin__core" />
-                <span className="dollhouse-pin__label">{spot.name}</span>
-              </button>
-            );
-          })}
+          {/* Room Selector Strip inside viewport */}
+          <div className="dollhouse__room-strip" role="tablist" aria-label="Select room view">
+            {levelRooms.map((room) => {
+              const isSelected = room.id === currentRoom.id;
+              return (
+                <button
+                  key={room.id}
+                  type="button"
+                  onClick={() => setActiveRoomId(room.id)}
+                  className={`dollhouse__room-btn ${
+                    isSelected ? "dollhouse__room-btn--active" : ""
+                  }`}
+                >
+                  <span className="dollhouse__room-dot" />
+                  <span>{room.name}</span>
+                </button>
+              );
+            })}
+          </div>
         </div>
 
         {/* Selected Room Architectural Spec Sheet */}
         <div className="dollhouse__card" role="region" aria-live="polite">
           <div className="dollhouse__card-level">
-            LEVEL {activeHotspot.level} · {activeHotspot.area}
+            LEVEL {currentRoom.level} · {currentRoom.area} · CEILING {currentRoom.ceiling}
           </div>
-          <h3 className="dollhouse__card-title">{activeHotspot.name}</h3>
-          <p className="dollhouse__card-desc">{activeHotspot.description}</p>
+          <h3 className="dollhouse__card-title">{currentRoom.name}</h3>
+          <p className="dollhouse__card-desc">{currentRoom.description}</p>
+
+          <div className="dollhouse__features">
+            <span className="dollhouse__feat-title">Architectural Features</span>
+            <ul className="dollhouse__feat-list">
+              {currentRoom.features.map((feat, idx) => (
+                <li key={idx} className="dollhouse__feat-item">
+                  <span className="dollhouse__feat-icon">✦</span>
+                  <span>{feat}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
 
           <div className="dollhouse__card-specs">
             <div>
               <span className="dollhouse__spec-label">Ceiling Height</span>
-              <span className="dollhouse__spec-val">{activeHotspot.ceiling}</span>
+              <span className="dollhouse__spec-val">{currentRoom.ceiling}</span>
             </div>
             <div>
-              <span className="dollhouse__spec-label">Architectural Material</span>
-              <span className="dollhouse__spec-val">{activeHotspot.finish}</span>
+              <span className="dollhouse__spec-label">Finish Materials</span>
+              <span className="dollhouse__spec-val">{currentRoom.finish}</span>
+            </div>
+            <div>
+              <span className="dollhouse__spec-label">View Orientation</span>
+              <span className="dollhouse__spec-val">{currentRoom.orientation}</span>
             </div>
           </div>
+
+          <a
+            href="#studio"
+            className="btn btn--ghost"
+            style={{ marginTop: "16px", justifyContent: "center", fontSize: "13px", padding: "10px 18px" }}
+          >
+            <span>Explore in 3D Pavilion Studio ↑</span>
+          </a>
         </div>
       </div>
     </div>
